@@ -1,5 +1,7 @@
 #include "Application.hpp"
 #include "Macro.hpp"
+#include "Window.hpp"
+#include "../Event/WindowEvent.hpp"
 
 namespace Engine
 {

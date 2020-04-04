@@ -14,7 +14,11 @@
     <ClCompile Include="Core\Application.cpp" />
     <ClCompile Include="Core\Log.cpp" />
     <ClCompile Include="Core\Window.cpp" />
+    <ClCompile Include="Geometry\Mesh.cpp" />
     <ClCompile Include="IO\LoadShader.cpp" />
+    <ClCompile Include="IO\LoadTexture.cpp" />
+    <ClCompile Include="Shading\Shader.cpp" />
+    <ClCompile Include="Shading\Texture.cpp" />
     <ClCompile Include="Vendor\glad.c" />
     <ClCompile Include="Vendor\stb_image.cpp" />
   </ItemGroup>
@@ -27,8 +31,14 @@
     <ClInclude Include="Engine.hpp" />
     <ClInclude Include="Event\Event.hpp" />
     <ClInclude Include="Event\WindowEvent.hpp" />
+    <ClInclude Include="Geometry\Mesh.hpp" />
+    <ClInclude Include="Geometry\Quad.hpp" />
+    <ClInclude Include="IO\Loader.hpp" />
     <ClInclude Include="IO\LoadShader.hpp" />
+    <ClInclude Include="IO\LoadTexture.hpp" />
     <ClInclude Include="Shading\Shader.hpp" />
+    <ClInclude Include="Shading\ShaderType.hpp" />
+    <ClInclude Include="Shading\Texture.hpp" />
     <ClInclude Include="Vendor\stb_image.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

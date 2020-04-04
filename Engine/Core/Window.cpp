@@ -8,7 +8,7 @@ namespace Engine
 
 	static void GLFWErrorCallback(int error, const char* description)
 	{
-		ERROR("GLFW Error ({0}): {1}", error, description);
+		LOG_ERROR("GLFW Error ({0}): {1}", error, description);
 	}
 
 	Window::Window(const WindowProps &props)
@@ -17,12 +17,12 @@ namespace Engine
 		m_Data.Width  = props.Width;
 		m_Data.Height = props.Height;
 
-		INFO("Creating window {0}, size:({1}, {2})", props.Title, props.Width, props.Height);
+		LOG_INFO("Creating window {0}, size:({1}, {2})", props.Title, props.Width, props.Height);
 		if (s_GLFWWindowCount == 0)
 		{
 			if(!glfwInit())
 			{
-				ERROR("Could not intialize GLFW!");
+				LOG_ERROR("Could not intialize GLFW!");
 			}
 			glfwSetErrorCallback(GLFWErrorCallback);
 		}
@@ -34,7 +34,7 @@ namespace Engine
 
 		if(!m_WindowPtr)
 		{
-			ERROR("Failed to create GLFW window");
+			LOG_ERROR("Failed to create GLFW window");
 			glfwTerminate();
 			return;
 		}

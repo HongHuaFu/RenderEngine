@@ -8,7 +8,7 @@ namespace Engine
 	public:
 		virtual void EventWindowResize(WindowResizeEvent& e) override
 		{
-			INFO("Window resize ({0},{1})",e.GetWidth(),e.GetHeight());
+			LOG_INFO("Window resize ({0},{1})",e.GetWidth(),e.GetHeight());
 		}
 
 	};

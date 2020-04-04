@@ -39,7 +39,7 @@ namespace Engine
 		WindowData m_Data;
 
 	public:
-		Window(const WindowProps&);
+		 Window(const WindowProps&);
 		~Window();
 		void OnUpdate();
 

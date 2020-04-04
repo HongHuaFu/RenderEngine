@@ -3,13 +3,17 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "Window.hpp"
-#include "../Event/WindowEvent.hpp"
+#include <memory>
 
 int main();
 
 namespace Engine
 {
+	class Window;
+	class Event;
+	class WindowCloseEvent;
+	class WindowResizeEvent;
+
 	class Application
 	{
 	public: // жиди

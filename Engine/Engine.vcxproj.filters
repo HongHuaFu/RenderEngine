@@ -7,6 +7,10 @@
     <ClCompile Include="Vendor\stb_image.cpp" />
     <ClCompile Include="Vendor\glad.c" />
     <ClCompile Include="IO\LoadShader.cpp" />
+    <ClCompile Include="Shading\Shader.cpp" />
+    <ClCompile Include="Shading\Texture.cpp" />
+    <ClCompile Include="IO\LoadTexture.cpp" />
+    <ClCompile Include="Geometry\Mesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Log.hpp" />
@@ -20,5 +24,11 @@
     <ClInclude Include="Vendor\stb_image.h" />
     <ClInclude Include="Shading\Shader.hpp" />
     <ClInclude Include="IO\LoadShader.hpp" />
+    <ClInclude Include="Shading\ShaderType.hpp" />
+    <ClInclude Include="Shading\Texture.hpp" />
+    <ClInclude Include="IO\LoadTexture.hpp" />
+    <ClInclude Include="IO\Loader.hpp" />
+    <ClInclude Include="Geometry\Quad.hpp" />
+    <ClInclude Include="Geometry\Mesh.hpp" />
   </ItemGroup>
 </Project>

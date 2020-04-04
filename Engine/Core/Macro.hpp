@@ -9,16 +9,23 @@
 
 #ifdef APPLICATION_
 	// Client log macros
-	#define TRACE(...)	 ::Engine::Log::GetClientLogger()->trace(__VA_ARGS__)
-	#define INFO(...)	 ::Engine::Log::GetClientLogger()->info(__VA_ARGS__)
-	#define WARN(...)	 ::Engine::Log::GetClientLogger()->warn(__VA_ARGS__)
-	#define ERROR(...)	 ::Engine::Log::GetClientLogger()->error(__VA_ARGS__)
+	#define LOG_TRACE(...)	 ::Engine::Log::GetClientLogger()->trace(__VA_ARGS__)
+	#define LOG_INFO(...)	 ::Engine::Log::GetClientLogger()->info(__VA_ARGS__)
+	#define LOG_WARN(...)	 ::Engine::Log::GetClientLogger()->warn(__VA_ARGS__)
+	#define LOG_ERROR(...)	 ::Engine::Log::GetClientLogger()->error(__VA_ARGS__)
 #else
 	// Engine log macros
-	#define TRACE(...)   ::Engine::Log::GetEngineLogger()->trace(__VA_ARGS__)
-	#define INFO(...)    ::Engine::Log::GetEngineLogger()->info(__VA_ARGS__)
-	#define WARN(...)    ::Engine::Log::GetEngineLogger()->warn(__VA_ARGS__)
-	#define ERROR(...)   ::Engine::Log::GetEngineLogger()->error(__VA_ARGS__)
+	#define LOG_TRACE(...)   ::Engine::Log::GetEngineLogger()->trace(__VA_ARGS__)
+	#define LOG_INFO(...)    ::Engine::Log::GetEngineLogger()->info(__VA_ARGS__)
+	#define LOG_WARN(...)    ::Engine::Log::GetEngineLogger()->warn(__VA_ARGS__)
+	#define LOG_ERROR(...)   ::Engine::Log::GetEngineLogger()->error(__VA_ARGS__)
 #endif
+
+#ifndef UNABLE_ASSERTS
+#define LOG_ASSERT(x, ...) { if(!(x)) { ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#else
+#define LOG_ASSERT(x, ...)
+#endif
+
 
 #endif

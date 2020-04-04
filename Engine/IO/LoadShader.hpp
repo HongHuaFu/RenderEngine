@@ -1,12 +1,13 @@
 #ifndef ENGINE_LOAD_SHADER_HPP
 #define ENGINE_LOAD_SHADER_HPP
 
-#include "../Shading/Shader.hpp"
+
 #include <string>
 #include <vector>
 
-namespace Engine::Loader
+namespace Engine
 {
+	class Shader;
 	static Shader LoadShader(std::string name, 
 							 std::string vsPath, 
 							 std::string fsPath, 
