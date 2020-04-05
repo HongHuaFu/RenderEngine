@@ -15,6 +15,7 @@
     <ClCompile Include="Core\Log.cpp" />
     <ClCompile Include="Core\Window.cpp" />
     <ClCompile Include="Geometry\Mesh.cpp" />
+    <ClCompile Include="IO\Loader.cpp" />
     <ClCompile Include="IO\LoadShader.cpp" />
     <ClCompile Include="IO\LoadTexture.cpp" />
     <ClCompile Include="Shading\Shader.cpp" />

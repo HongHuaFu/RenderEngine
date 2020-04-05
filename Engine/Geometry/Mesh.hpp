@@ -16,9 +16,11 @@ namespace Engine
 		TRIANGLE_FAN,
 	};
 
+	// TODO: 添加手动GC
 	class Mesh
 	{
-	private:
+	// TODO: 修改为private
+	public:
 		unsigned int m_VAO = 0;
 		unsigned int m_VBO;
 		unsigned int m_EBO;
@@ -59,16 +61,13 @@ namespace Engine
 		void SetPositions(std::vector<glm::vec3> positions);
 		void SetUVs(std::vector<glm::vec2> uv);
 		void SetNormals(std::vector<glm::vec3> normals);
-		void SetTangents(std::vector<glm::vec3> tangents, 
-						 std::vector<glm::vec3> bitangents); 
+		void SetTangents(std::vector<glm::vec3> tangents,std::vector<glm::vec3> bitangents); 
 
-																							// 将顶点数据提交到GPU
+		// 将顶点数据提交到GPU
 		void Finalize(bool interleaved = true);
 
 
-	private:
-		void CalculateNormals(bool smooth = true);
-		void CalculateTangents();
+	
 	};
 }
 

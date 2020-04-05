@@ -5,10 +5,10 @@
 
 namespace Engine
 {
-	Texture LoadTexture(std::string path,
-						unsigned int target,
-						unsigned int internalFormat,
-						bool srgb)
+	Texture LoadTexture::Load(std::string path,
+							  unsigned int target,
+							  unsigned int internalFormat,
+							  bool srgb)
 	{
 		Texture texture;
 		texture.m_Target = target;

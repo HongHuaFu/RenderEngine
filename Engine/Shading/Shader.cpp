@@ -113,6 +113,8 @@ namespace Engine
 
 		// ∂•µ„ Ù–‘/Uniform…Ë÷√
 		int nrAttributes, nrUniforms;
+
+		// TODO: 
 		glGetProgramiv(m_ID, GL_ACTIVE_ATTRIBUTES, &nrAttributes);
 		glGetProgramiv(m_ID, GL_ACTIVE_UNIFORMS, &nrUniforms);
 		
@@ -145,10 +147,10 @@ namespace Engine
 			Uniforms[i].Location = glGetUniformLocation(m_ID, buffer);
 		}
 
-		
+		LOG_TRACE("Compile shader \"{0}\" success.",name);
 	}
 
-	inline void Shader::Use()
+	void Shader::Use()
 	{
 		glUseProgram(m_ID);
 	}

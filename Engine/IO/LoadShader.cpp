@@ -38,10 +38,10 @@ namespace Engine
 	}
 
 
-	Shader LoadShader(std::string name,
-					  std::string vsPath,
-					  std::string fsPath,
-					  std::vector<std::string> defines)
+	Shader LoadShader::Load(std::string name,
+							std::string vsPath,
+							std::string fsPath,
+							std::vector<std::string> defines)
 	{
 		std::ifstream vsFile, fsFile;
 		vsFile.open(vsPath);
@@ -52,9 +52,16 @@ namespace Engine
 			LOG_ERROR("Shader failed to load at path: {0} and {1}.",vsPath,fsPath);
 			return Shader();
 		}
-
+		
 		std::string vsSource = ReadShader(vsFile, name, vsPath);
 		std::string fsSource = ReadShader(fsFile, name, fsPath);
+
+		Shader shader(name, vsSource, fsSource, defines);
+
+		vsFile.close();
+		fsFile.close();
+
+		return shader;
 	}
 
 }

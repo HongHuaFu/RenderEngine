@@ -7,10 +7,16 @@
 namespace Engine
 {
 	class Texture;
-	static Texture LoadTexture(std::string path,
-							   unsigned int target,
-							   unsigned int internalFormat,
-							   bool srgb = false);
+
+	class LoadTexture
+	{
+	public:
+		static Texture Load(std::string path,
+							unsigned int target,
+							unsigned int internalFormat,
+							bool srgb = false);
+	};
+	
 	
 }
 

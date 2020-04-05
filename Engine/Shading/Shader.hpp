@@ -8,6 +8,7 @@
 
 namespace Engine
 {
+	// TODO: 改成智能指针+RAII的内存管理组合
 	class Shader
 	{
 	public:
@@ -28,7 +29,7 @@ namespace Engine
 			   std::vector<std::string> defines = std::vector<std::string>());
 
 		
-		inline void Use();
+		void Use();
 
 		// 确认该uniform值是否存在
 		bool HasUniform(std::string name);
@@ -62,6 +63,7 @@ namespace Engine
 		std::string m_Name;
 		unsigned int m_ID;
 
+		// TODO: 使用字典代替
 		std::vector<Uniform>         Uniforms;
 		std::vector<VertexAttribute> Attributes;
 	};

@@ -4,6 +4,8 @@
 #include <glad/glad.h>
 #include <string>
 
+// TODO: ÓÑÔªº¯ÊıÉèÖÃ
+
 namespace Engine
 {
 	class Texture
@@ -62,7 +64,7 @@ namespace Engine
 		void SetFilterMax(unsigned int filter, bool bind = false);
 
 	public: // getter
-
+		inline unsigned int GetID(){ return m_ID; }
 
 	private:
 		unsigned int m_ID;
@@ -88,7 +90,8 @@ namespace Engine
 		unsigned int m_Depth  = 0;
 
 	private:
-		friend Texture LoadTexture(std::string,unsigned int,unsigned int,bool);
+		friend class LoadTexture;
+		friend class Loader;
 	};
 }
 

@@ -8,6 +8,7 @@ extern Engine::Application* Engine::CreateApplication();
 int main()
 {
 	Engine::Log::Init();
+	Engine::Loader::Init();
 
 	auto app = Engine::CreateApplication();
 	app->Run();

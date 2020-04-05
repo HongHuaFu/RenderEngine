@@ -64,9 +64,11 @@ namespace Engine
 
 	void Application::Run()
 	{
+		EventStart();
+
 		while(m_Running)
 		{
-			
+			EventUpdate();
 			m_Window->OnUpdate();
 		}
 	}

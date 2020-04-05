@@ -8,10 +8,17 @@
 namespace Engine
 {
 	class Shader;
-	static Shader LoadShader(std::string name, 
-							 std::string vsPath, 
-							 std::string fsPath, 
-							 std::vector<std::string> defines = std::vector<std::string>());
+	class LoadShader
+	{
+	public:
+		static Shader Load(std::string name, 
+						   std::string vsPath, 
+						   std::string fsPath, 
+						   std::vector<std::string> defines = std::vector<std::string>());
+
+	};
+	
+
 		
 }
 

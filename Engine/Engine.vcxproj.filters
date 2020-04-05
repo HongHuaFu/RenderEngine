@@ -11,6 +11,7 @@
     <ClCompile Include="Shading\Texture.cpp" />
     <ClCompile Include="IO\LoadTexture.cpp" />
     <ClCompile Include="Geometry\Mesh.cpp" />
+    <ClCompile Include="IO\Loader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Log.hpp" />
