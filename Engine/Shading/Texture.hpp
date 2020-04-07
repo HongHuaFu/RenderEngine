@@ -92,6 +92,8 @@ namespace Engine
 	private:
 		friend class LoadTexture;
 		friend class Loader;
+		friend class Material;
+		friend class RenderTarget;
 	};
 }
 

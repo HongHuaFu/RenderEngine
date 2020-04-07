@@ -56,6 +56,9 @@ namespace Engine
 		void SetMatrixArray(std::string location, int size, glm::mat2* values);
 		void SetMatrixArray(std::string location, int size, glm::mat3* values);
 		void SetMatrixArray(std::string location, int size, glm::mat4* values);
+
+	public:
+		inline unsigned int GetID() const { return m_ID; }
 	private:
 		int GetUniformLocation(std::string name);
 
