@@ -8,6 +8,10 @@ namespace Engine
 	class TextureCube
 	{
 	private:
+		friend class PBR;
+		friend class LoadTexture;
+		friend class Renderer;
+	private:
 		unsigned int m_ID;
 		unsigned int m_InternalFormat = GL_RGBA;           
 		unsigned int m_Format         = GL_RGBA;           

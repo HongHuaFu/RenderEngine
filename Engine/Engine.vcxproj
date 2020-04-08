@@ -14,6 +14,7 @@
     <ClCompile Include="Core\Application.cpp" />
     <ClCompile Include="Core\Log.cpp" />
     <ClCompile Include="Core\Window.cpp" />
+    <ClCompile Include="Geometry\Cube.cpp" />
     <ClCompile Include="Geometry\Mesh.cpp" />
     <ClCompile Include="IO\Loader.cpp" />
     <ClCompile Include="IO\LoadMesh.cpp" />
@@ -22,6 +23,8 @@
     <ClCompile Include="Renderer\CommandBuffer.cpp" />
     <ClCompile Include="Renderer\GraphicCache.cpp" />
     <ClCompile Include="Renderer\MaterialLibrary.cpp" />
+    <ClCompile Include="Renderer\PBR.cpp" />
+    <ClCompile Include="Renderer\PostProcessor.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Renderer\RenderTarget.cpp" />
     <ClCompile Include="Scene\Camera.cpp" />
@@ -45,8 +48,10 @@
     <ClInclude Include="Engine.hpp" />
     <ClInclude Include="Event\Event.hpp" />
     <ClInclude Include="Event\WindowEvent.hpp" />
+    <ClInclude Include="Geometry\Cube.hpp" />
     <ClInclude Include="Geometry\Mesh.hpp" />
     <ClInclude Include="Geometry\Quad.hpp" />
+    <ClInclude Include="Geometry\Sphere.hpp" />
     <ClInclude Include="IO\Loader.hpp" />
     <ClInclude Include="IO\LoadMesh.hpp" />
     <ClInclude Include="IO\LoadShader.hpp" />
@@ -55,12 +60,15 @@
     <ClInclude Include="Renderer\CommandBuffer.hpp" />
     <ClInclude Include="Renderer\GraphicCache.hpp" />
     <ClInclude Include="Renderer\MaterialLibrary.hpp" />
+    <ClInclude Include="Renderer\PBR.hpp" />
+    <ClInclude Include="Renderer\PostProcessor.hpp" />
     <ClInclude Include="Renderer\RenderCommand.hpp" />
     <ClInclude Include="Renderer\Renderer.hpp" />
     <ClInclude Include="Renderer\RenderTarget.hpp" />
     <ClInclude Include="Scene\Camera.hpp" />
     <ClInclude Include="Scene\FlyCamera.hpp" />
     <ClInclude Include="Scene\Frustum.hpp" />
+    <ClInclude Include="Scene\Light.hpp" />
     <ClInclude Include="Scene\Scene.hpp" />
     <ClInclude Include="Scene\SceneNode.hpp" />
     <ClInclude Include="Scene\SkyBox.hpp" />
@@ -126,7 +134,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)Vendor\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -148,7 +156,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)Vendor\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

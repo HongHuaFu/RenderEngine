@@ -2,6 +2,8 @@
 #include "RenderTarget.hpp"
 #include "../Shading/Material.hpp"
 #include "../Core/Macro.hpp"
+#include "../IO/Loader.hpp"
+#include "../Shading/Shader.hpp"
 
 // TODO: ÐÞ¸´
 
@@ -66,17 +68,17 @@ namespace Engine
 	void MaterialLibrary::GenerateDefaultMaterials()
 	{
 		// default render material (deferred path)
-		Shader* defaultShader = Resources::LoadShader("default", "shaders/deferred/g_buffer.vs", "shaders/deferred/g_buffer.fs");
+		Shader* defaultShader = Loader::LoadShader("default", "shaders/deferred/g_buffer.vs", "shaders/deferred/g_buffer.fs");
 		Material* defaultMat = new Material(defaultShader);
 		defaultMat->Type = MATERIAL_DEFAULT;
-		defaultMat->SetTexture("TexAlbedo", Resources::LoadTexture("default albedo", "textures/checkerboard.png", GL_TEXTURE_2D, GL_RGB), 3);
-		defaultMat->SetTexture("TexNormal", Resources::LoadTexture("default normal", "textures/norm.png"), 4);
-		defaultMat->SetTexture("TexMetallic", Resources::LoadTexture("default metallic", "textures/black.png"), 5);
-		defaultMat->SetTexture("TexRoughness", Resources::LoadTexture("default roughness", "textures/checkerboard.png"), 6);
+		defaultMat->SetTexture("TexAlbedo", Loader::LoadTexture("default albedo", "textures/checkerboard.png", GL_TEXTURE_2D, GL_RGB), 3);
+		defaultMat->SetTexture("TexNormal", Loader::LoadTexture("default normal", "textures/norm.png"), 4);
+		defaultMat->SetTexture("TexMetallic", Loader::LoadTexture("default metallic", "textures/black.png"), 5);
+		defaultMat->SetTexture("TexRoughness", Loader::LoadTexture("default roughness", "textures/checkerboard.png"), 6);
 		m_DefaultMaterials[SID("default")] = defaultMat;
 
 		// glass material
-		Shader* glassShader = Resources::LoadShader("glass", "shaders/forward_render.vs", "shaders/forward_render.fs", { "ALPHA_BLEND" });
+		Shader* glassShader = Loader::LoadShader("glass", "shaders/forward_render.vs", "shaders/forward_render.fs", { "ALPHA_BLEND" });
 		glassShader->Use();
 		glassShader->SetInt("lightShadowMap1", 10);
 		glassShader->SetInt("lightShadowMap2", 10);
@@ -84,16 +86,16 @@ namespace Engine
 		glassShader->SetInt("lightShadowMap4", 10);
 		Material* glassMat = new Material(glassShader);
 		glassMat->Type = MATERIAL_CUSTOM; // this material can't fit in the deferred rendering pipeline (due to transparency sorting).
-		glassMat->SetTexture("TexAlbedo", Cell::Resources::LoadTexture("glass albedo", "textures/glass.png", GL_TEXTURE_2D, GL_RGBA), 0);
-		glassMat->SetTexture("TexNormal", Cell::Resources::LoadTexture("glass normal", "textures/pbr/plastic/normal.png"), 1);
-		glassMat->SetTexture("TexMetallic", Cell::Resources::LoadTexture("glass metallic", "textures/pbr/plastic/metallic.png"), 2);
-		glassMat->SetTexture("TexRoughness", Cell::Resources::LoadTexture("glass roughness", "textures/pbr/plastic/roughness.png"), 3);
-		glassMat->SetTexture("TexAO", Cell::Resources::LoadTexture("glass ao", "textures/pbr/plastic/ao.png"), 4);
+		glassMat->SetTexture("TexAlbedo", Loader::LoadTexture("glass albedo", "textures/glass.png", GL_TEXTURE_2D, GL_RGBA), 0);
+		glassMat->SetTexture("TexNormal", Loader::LoadTexture("glass normal", "textures/pbr/plastic/normal.png"), 1);
+		glassMat->SetTexture("TexMetallic", Loader::LoadTexture("glass metallic", "textures/pbr/plastic/metallic.png"), 2);
+		glassMat->SetTexture("TexRoughness", Loader::LoadTexture("glass roughness", "textures/pbr/plastic/roughness.png"), 3);
+		glassMat->SetTexture("TexAO", Loader::LoadTexture("glass ao", "textures/pbr/plastic/ao.png"), 4);
 		glassMat->Blend = true;
 		m_DefaultMaterials[SID("glass")] = glassMat;
 
 		// alpha blend material
-		Shader* alphaBlendShader = Resources::LoadShader("alpha blend", "shaders/forward_render.vs", "shaders/forward_render.fs", { "ALPHA_BLEND" });
+		Shader* alphaBlendShader = Loader::LoadShader("alpha blend", "shaders/forward_render.vs", "shaders/forward_render.fs", { "ALPHA_BLEND" });
 		alphaBlendShader->Use();
 		alphaBlendShader->SetInt("lightShadowMap1", 10);
 		alphaBlendShader->SetInt("lightShadowMap2", 10);
@@ -105,7 +107,7 @@ namespace Engine
 		m_DefaultMaterials[SID("alpha blend")] = alphaBlendMaterial;
 
 		// alpha cutout material
-		Shader* alphaDiscardShader = Resources::LoadShader("alpha discard", "shaders/forward_render.vs", "shaders/forward_render.fs", { "ALPHA_DISCARD" });
+		Shader* alphaDiscardShader = Loader::LoadShader("alpha discard", "shaders/forward_render.vs", "shaders/forward_render.fs", { "ALPHA_DISCARD" });
 		alphaDiscardShader->Use();
 		alphaDiscardShader->SetInt("lightShadowMap1", 10);
 		alphaDiscardShader->SetInt("lightShadowMap2", 10);
@@ -121,14 +123,14 @@ namespace Engine
 	void MaterialLibrary::GenerateInternalMaterials(RenderTarget* gBuffer)
 	{
 		// post-processing
-		Shader* defaultBlitShader = Cell::Resources::LoadShader("blit", "shaders/screen_quad.vs", "shaders/default_blit.fs");
+		Shader* defaultBlitShader = Loader::LoadShader("blit", "shaders/screen_quad.vs", "shaders/default_blit.fs");
 		defaultBlitMaterial = new Material(defaultBlitShader);
 
 		// deferred
-		deferredAmbientShader     = Cell::Resources::LoadShader("deferred ambient", "shaders/deferred/screen_ambient.vs", "shaders/deferred/ambient.fs");
-		deferredIrradianceShader  = Cell::Resources::LoadShader("deferred irradiance", "shaders/deferred/ambient_irradience.vs", "shaders/deferred/ambient_irradience.fs");
-		deferredDirectionalShader = Cell::Resources::LoadShader("deferred directional", "shaders/deferred/screen_directional.vs", "shaders/deferred/directional.fs");
-		deferredPointShader       = Cell::Resources::LoadShader("deferred point", "shaders/deferred/point.vs", "shaders/deferred/point.fs");
+		deferredAmbientShader     = Loader::LoadShader("deferred ambient", "shaders/deferred/screen_ambient.vs", "shaders/deferred/ambient.fs");
+		deferredIrradianceShader  = Loader::LoadShader("deferred irradiance", "shaders/deferred/ambient_irradience.vs", "shaders/deferred/ambient_irradience.fs");
+		deferredDirectionalShader = Loader::LoadShader("deferred directional", "shaders/deferred/screen_directional.vs", "shaders/deferred/directional.fs");
+		deferredPointShader       = Loader::LoadShader("deferred point", "shaders/deferred/point.vs", "shaders/deferred/point.fs");
 
 		deferredAmbientShader->Use();
 		deferredAmbientShader->SetInt("gPositionMetallic", 0);
@@ -160,10 +162,10 @@ namespace Engine
 		deferredPointShader->SetInt("gAlbedoAO", 2);
 
 		// shadows
-		dirShadowShader = Cell::Resources::LoadShader("shadow directional", "shaders/shadow_cast.vs", "shaders/shadow_cast.fs");
+		dirShadowShader = Loader::LoadShader("shadow directional", "shaders/shadow_cast.vs", "shaders/shadow_cast.fs");
 
 		// debug
-		Shader *debugLightShader = Resources::LoadShader("debug light", "shaders/light.vs", "shaders/light.fs");
+		Shader *debugLightShader = Loader::LoadShader("debug light", "shaders/light.vs", "shaders/light.fs");
 		debugLightMaterial = new Material(debugLightShader);
 	}
 }

@@ -2,6 +2,9 @@
 #include "../Core/Macro.hpp"
 #include "../Scene/SceneNode.hpp"
 #include "../Geometry/Mesh.hpp"
+#include "../Renderer/Renderer.hpp"
+#include "../IO/Loader.hpp"
+#include "../Shading/Material.hpp"
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
@@ -191,7 +194,7 @@ namespace Engine
 			std::string fileName = LoadMesh::processPath(&file, directory);
 			// we name the texture the same as the filename as to reduce naming conflicts while 
 			// still only loading unique textures.
-			Texture* texture = Resources::LoadTexture(fileName, fileName, GL_TEXTURE_2D, alpha ? GL_RGBA : GL_RGB, true);
+			Texture* texture = Loader::LoadTexture(fileName, fileName, GL_TEXTURE_2D, alpha ? GL_RGBA : GL_RGB, true);
 			if (texture)
 			{
 				material->SetTexture("TexAlbedo", texture, 3);
@@ -201,9 +204,9 @@ namespace Engine
 		{
 			aiString file;
 			aMaterial->GetTexture(aiTextureType_DISPLACEMENT, 0, &file);
-			std::string fileName = MeshLoader::processPath(&file, directory);
+			std::string fileName = LoadMesh::processPath(&file, directory);
 
-			Texture* texture = Resources::LoadTexture(fileName, fileName);
+			Texture* texture = Loader::LoadTexture(fileName, fileName);
 			if (texture)
 			{
 				material->SetTexture("TexNormal", texture, 4);
@@ -213,9 +216,9 @@ namespace Engine
 		{
 			aiString file;
 			aMaterial->GetTexture(aiTextureType_SPECULAR, 0, &file);
-			std::string fileName = MeshLoader::processPath(&file, directory);
+			std::string fileName = LoadMesh::processPath(&file, directory);
 
-			Texture* texture = Resources::LoadTexture(fileName, fileName);
+			Texture* texture = Loader::LoadTexture(fileName, fileName);
 			if (texture)
 			{
 				material->SetTexture("TexMetallic", texture, 5);
@@ -225,9 +228,9 @@ namespace Engine
 		{
 			aiString file;
 			aMaterial->GetTexture(aiTextureType_SHININESS, 0, &file);
-			std::string fileName = MeshLoader::processPath(&file, directory);
+			std::string fileName = LoadMesh::processPath(&file, directory);
 
-			Texture* texture = Resources::LoadTexture(fileName, fileName);
+			Texture* texture = Loader::LoadTexture(fileName, fileName);
 			if (texture)
 			{
 				material->SetTexture("TexRoughness", texture, 6);
@@ -237,9 +240,9 @@ namespace Engine
 		{
 			aiString file;
 			aMaterial->GetTexture(aiTextureType_AMBIENT, 0, &file);
-			std::string fileName = MeshLoader::processPath(&file, directory);
+			std::string fileName = LoadMesh::processPath(&file, directory);
 
-			Texture* texture = Resources::LoadTexture(fileName, fileName);
+			Texture* texture = Loader::LoadTexture(fileName, fileName);
 			if (texture)
 			{
 				material->SetTexture("TexAO", texture, 7);

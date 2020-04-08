@@ -7,6 +7,7 @@
 namespace Engine
 {
 	class Texture;
+	class TextureCube;
 
 	class LoadTexture
 	{
@@ -15,6 +16,12 @@ namespace Engine
 							unsigned int target,
 							unsigned int internalFormat,
 							bool srgb = false);
+
+		static Texture LoadHDRTexture(std::string path);
+		// TODO(Joey): read and copy original cubemap order from GL specification
+		static TextureCube LoadTextureCube(std::string top, std::string bottom, std::string left, std::string right, std::string front, std::string back);
+		// assumes default names for cubemap faces
+		static TextureCube LoadTextureCube(std::string folder);
 	};
 	
 	

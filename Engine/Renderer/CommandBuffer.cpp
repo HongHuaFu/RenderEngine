@@ -2,6 +2,7 @@
 #include "RenderTarget.hpp"
 #include "../Shading/Material.hpp"
 #include "../Shading/Shader.hpp"
+#include "../Renderer/Renderer.hpp"
 #include <algorithm>
 #include <tuple>
 

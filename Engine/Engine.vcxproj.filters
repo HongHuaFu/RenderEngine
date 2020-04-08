@@ -25,6 +25,9 @@
     <ClCompile Include="Renderer\GraphicCache.cpp" />
     <ClCompile Include="IO\LoadMesh.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
+    <ClCompile Include="Renderer\PostProcessor.cpp" />
+    <ClCompile Include="Renderer\PBR.cpp" />
+    <ClCompile Include="Geometry\Cube.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Log.hpp" />
@@ -60,5 +63,10 @@
     <ClInclude Include="Scene\Scene.hpp" />
     <ClInclude Include="Renderer\GraphicCache.hpp" />
     <ClInclude Include="IO\LoadMesh.hpp" />
+    <ClInclude Include="Renderer\PostProcessor.hpp" />
+    <ClInclude Include="Renderer\PBR.hpp" />
+    <ClInclude Include="Geometry\Cube.hpp" />
+    <ClInclude Include="Geometry\Sphere.hpp" />
+    <ClInclude Include="Scene\Light.hpp" />
   </ItemGroup>
 </Project>

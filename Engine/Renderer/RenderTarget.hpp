@@ -9,6 +9,8 @@ namespace Engine
 {
 	class RenderTarget
 	{
+	private:
+		friend class Renderer;
 	public:
 		unsigned int ID;
 

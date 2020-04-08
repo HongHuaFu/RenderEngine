@@ -1,6 +1,6 @@
 #include "Frustum.hpp"
 #include "Camera.hpp"
-#include <glm/>
+#include <glm/glm.hpp>
 
 namespace Engine
 {

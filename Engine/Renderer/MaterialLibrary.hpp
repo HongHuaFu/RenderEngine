@@ -14,6 +14,8 @@ namespace Engine
 	class MaterialLibrary
 	{
 	private:
+		friend class Renderer;
+	private:
 		std::map<unsigned int, Material*> m_DefaultMaterials;
 		std::vector<Material*> m_Materials;
 
