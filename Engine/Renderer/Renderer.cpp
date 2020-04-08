@@ -59,7 +59,7 @@ namespace Engine
 	}
 
 	// ------------------------------------------------------------------------
-	void Renderer::Init(GLADloadproc loadProcFunc)
+	void Renderer::Init()
 	{
 		// initialize render items
 		m_CommandBuffer = new CommandBuffer(this);
@@ -67,13 +67,12 @@ namespace Engine
 		// configure default OpenGL state
 		m_GLCache.SetDepthTest(true);
 		m_GLCache.SetCull(true);
+
+		// 开启CubeMap边缘采样混合
 		glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
 
-		glViewport(0.0f, 0.0f, m_RenderSize.x, m_RenderSize.y);
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		glClearDepth(1.0f);
+		m_NDCPlane = new Quad();
 
-		m_NDCPlane = new Quad;
 		glGenFramebuffers(1, &m_FramebufferCubemap);
 		glGenRenderbuffers(1, &m_CubemapDepthRBO);
 
@@ -107,7 +106,7 @@ namespace Engine
 		// pbr
 		m_PBR = new PBR(this);
 
-		// ubo
+		//// ubo
 		glGenBuffers(1, &m_GlobalUBO);
 		glBindBuffer(GL_UNIFORM_BUFFER, m_GlobalUBO);
 		glBufferData(GL_UNIFORM_BUFFER, 720, nullptr, GL_STREAM_DRAW);

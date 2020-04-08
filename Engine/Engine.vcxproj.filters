@@ -28,6 +28,7 @@
     <ClCompile Include="Renderer\PostProcessor.cpp" />
     <ClCompile Include="Renderer\PBR.cpp" />
     <ClCompile Include="Geometry\Cube.cpp" />
+    <ClCompile Include="Scene\SkyBox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Log.hpp" />

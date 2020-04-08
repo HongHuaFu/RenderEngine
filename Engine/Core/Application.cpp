@@ -3,6 +3,9 @@
 #include "Window.hpp"
 #include "../Event/WindowEvent.hpp"
 
+#include "../IO/Loader.hpp"
+#include "../Renderer/Renderer.hpp"
+
 namespace Engine
 {
 	Application* Application::s_Instance = nullptr;
@@ -23,6 +26,12 @@ namespace Engine
 		
 		m_Window = std::make_unique<Window>(props);
 		m_Window->SetEventCallback(BIND_FN(Application::OnEvent));
+
+		// 初始化资源加载器
+		Loader::Init();
+
+		m_Renderer = std::make_unique<Renderer>();
+		m_Renderer->Init();
 	}
 
 

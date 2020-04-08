@@ -32,6 +32,7 @@
     <ClCompile Include="Scene\Frustum.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Scene\SceneNode.cpp" />
+    <ClCompile Include="Scene\SkyBox.cpp" />
     <ClCompile Include="Shading\Material.cpp" />
     <ClCompile Include="Shading\Shader.cpp" />
     <ClCompile Include="Shading\Texture.cpp" />

@@ -49,7 +49,9 @@ void main()
         
         // range check & accumulate
         float rangeCheck = smoothstep(0.0, 1.0, radius / abs(fragPos.z - sampleDepth));
-        occlusion += (sampleDepth >= sample.z + bias ? 1.0 : 0.0) * rangeCheck;           
+
+        float tmp = (sampleDepth >= tsample.z + bias ? 1.0 : 0.0);
+        occlusion += tmp * rangeCheck;           
     }
     occlusion = 1.0 - (occlusion / float(sampleCount));
     occlusion = pow(occlusion, 3.0);

@@ -85,7 +85,7 @@ namespace Engine
 		Renderer();
 		~Renderer();
 
-		void Init(GLADloadproc loadProcFunc);
+		void Init();
 
 		void SetRenderSize(unsigned int width, unsigned int height);
 		glm::vec2 GetRenderSize();

@@ -13,6 +13,7 @@ namespace Engine
 	class Event;
 	class WindowCloseEvent;
 	class WindowResizeEvent;
+	class Renderer;
 
 	class Application
 	{
@@ -43,6 +44,7 @@ namespace Engine
 
 	private:
 		std::unique_ptr<Window> m_Window;
+		std::unique_ptr<Renderer> m_Renderer;
 		bool m_Running = true;
 		bool m_Minimized = false;
 
