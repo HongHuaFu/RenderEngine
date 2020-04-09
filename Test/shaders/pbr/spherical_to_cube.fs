@@ -9,6 +9,7 @@ uniform sampler2D environment;
 
 void main()
 {
+	// 计算等距柱状体投影采样uv
 	vec2 uv = SampleSphericalMap(normalize(WorldPos));
 	vec3 color = texture(environment, uv).rgb;
     FragColor = vec4(color, 1.0);

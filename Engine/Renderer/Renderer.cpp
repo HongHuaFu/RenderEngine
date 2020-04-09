@@ -117,6 +117,7 @@ namespace Engine
 		PBRCapture *envBridge = m_PBR->ProcessEquirectangular(hdrMap);
 		SetSkyCapture(envBridge);
 	}
+
 	// ------------------------------------------------------------------------
 	void Renderer::SetRenderSize(unsigned int width, unsigned int height)
 	{
@@ -754,7 +755,7 @@ namespace Engine
 		// define 6 camera directions/lookup vectors
 		Camera faceCameras[6] = {
 			Camera(position, glm::vec3(1.0f,  0.0f,  0.0f), glm::vec3(0.0f, -1.0f,  0.0f)),
-			Camera(position, glm::vec3(-1.0f,  0.0f,  0.0f), glm::vec3(0.0f, -1.0f,  0.0f)),
+			Camera(position, glm::vec3(-1.0f, 0.0f,  0.0f), glm::vec3(0.0f, -1.0f,  0.0f)),
 			Camera(position, glm::vec3(0.0f,  1.0f,  0.0f), glm::vec3(0.0f,  0.0f,  1.0f)),
 			Camera(position, glm::vec3(0.0f, -1.0f,  0.0f), glm::vec3(0.0f,  0.0f,-1.0f)),
 			Camera(position, glm::vec3(0.0f,  0.0f,  1.0f), glm::vec3(0.0f, -1.0f,  0.0f)),

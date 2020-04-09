@@ -10,8 +10,8 @@ namespace Engine
 	
 	struct RenderCommand
 	{
-		glm::mat4 Transform;
-		glm::mat4 PrevTransform;
+		glm::mat4 Transform = glm::mat4(1.0f);
+		glm::mat4 PrevTransform = glm::mat4(1.0f);
 
 		Mesh*      Mesh;
 		Material*  Material;

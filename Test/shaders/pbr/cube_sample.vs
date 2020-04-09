@@ -14,7 +14,11 @@ void main()
 	vec4 worldPos = model * vec4(pos, 1.0);
 	WorldPos.xyz = worldPos.xyz;
 
+
+	// 去除位移量影响，因为要渲染到天空盒
 	mat4 rotView = mat4(mat3(view));
+
+	
 	vec4 clipPos = projection * rotView * model * worldPos;
 
 	gl_Position = clipPos.xyww;
