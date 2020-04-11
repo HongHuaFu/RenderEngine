@@ -108,6 +108,11 @@ namespace Engine
 	void Window::OnUpdate()
 	{
 		glfwPollEvents();
+		
+	}
+
+	void Window::SwapBuffer()
+	{
 		glfwSwapBuffers(m_WindowPtr);
 	}
 

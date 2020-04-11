@@ -43,6 +43,7 @@ namespace Engine
 		 Window(const WindowProps&);
 		~Window();
 		void OnUpdate();
+		void SwapBuffer();
 
 	public: // setter
 		inline void SetEventCallback(const EventCallbackFn& callback)

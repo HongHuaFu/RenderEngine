@@ -500,6 +500,7 @@ namespace Engine
 		m_RenderTargetsCustom.clear();
 		m_CurrentRenderTargetCustom = nullptr;
 	}
+
 	// ------------------------------------------------------------------------
 	void Renderer::Blit(Texture*      src,
 		RenderTarget* dst, 
@@ -539,21 +540,25 @@ namespace Engine
 		command.Mesh = m_NDCPlane;
 		renderCustomCommand(&command, nullptr);
 	}   
+
 	// ------------------------------------------------------------------------
 	void Renderer::SetSkyCapture(PBRCapture* pbrEnvironment)
 	{
 		m_PBR->SetSkyCapture(pbrEnvironment);
 	}
+
 	// ------------------------------------------------------------------------
 	PBRCapture* Renderer::GetSkypCature()
 	{
 		return m_PBR->GetSkyCapture();
 	}
+
 	// ------------------------------------------------------------------------
 	void Renderer::AddIrradianceProbe(glm::vec3 position, float radius)
 	{
 		m_ProbeSpatials.push_back(glm::vec4(position, radius));
 	}
+
 	// ------------------------------------------------------------------------
 	void Renderer::BakeProbes(SceneNode* scene)
 	{
@@ -626,6 +631,7 @@ namespace Engine
 			delete materials[i];
 		}
 	}  
+
 	// ------------------------------------------------------------------------
 	void Renderer::renderCustomCommand(RenderCommand* command, Camera* customCamera, bool updateGLSettings)
 	{
@@ -749,6 +755,8 @@ namespace Engine
 
 		renderToCubemap(renderCommands, target, position, mipLevel);
 	}
+
+
 	// ------------------------------------------------------------------------
 	void Renderer::renderToCubemap(std::vector<RenderCommand>& renderCommands, TextureCube* target, glm::vec3 position, unsigned int mipLevel)
 	{
@@ -791,6 +799,8 @@ namespace Engine
 			}
 		}
 	}
+
+
 	// --------------------------------------------------------------------------------------------
 	void Renderer::renderMesh(Mesh* mesh, Shader* shader)
 	{
@@ -804,6 +814,8 @@ namespace Engine
 			glDrawArrays(mesh->Topology == TRIANGLE_STRIP ? GL_TRIANGLE_STRIP : GL_TRIANGLES, 0, mesh->Positions.size());
 		}
 	}
+
+
 	// --------------------------------------------------------------------------------------------
 	void Renderer::updateGlobalUBOs()
 	{
@@ -814,7 +826,7 @@ namespace Engine
 		glBufferSubData(GL_UNIFORM_BUFFER, 128, sizeof(glm::mat4), &m_Camera->Projection[0][0]);
 		glBufferSubData(GL_UNIFORM_BUFFER, 192, sizeof(glm::mat4), &m_Camera->View[0][0]);
 		glBufferSubData(GL_UNIFORM_BUFFER, 256, sizeof(glm::mat4), &m_Camera->View[0][0]); // TODO: make inv function in math library
-																									// scene data
+																										// scene data
 		glBufferSubData(GL_UNIFORM_BUFFER, 320, sizeof(glm::vec4), &m_Camera->Position[0]);
 		// lighting
 		unsigned int stride = 2 * sizeof(glm::vec4);
@@ -829,12 +841,16 @@ namespace Engine
 			glBufferSubData(GL_UNIFORM_BUFFER, 464 + i * stride + sizeof(glm::vec4), sizeof(glm::vec4), &m_PointLights[i]->Color[0]);
 		}
 	}
+
+
 	// --------------------------------------------------------------------------------------------
 	RenderTarget* Renderer::getCurrentRenderTarget()
 	{
 		return m_CurrentRenderTargetCustom;
 	}
 	// --------------------------------------------------------------------------------------------
+	
+	
 	void Renderer::renderDeferredAmbient()
 	{
 		PBRCapture* skyCapture = m_PBR->GetSkyCapture();
@@ -889,6 +905,7 @@ namespace Engine
 	}
 	// --------------------------------------------------------------------------------------------
 
+	
 	void Renderer::renderDeferredDirLight(DirectionalLight* light)
 	{
 		Shader* dirShader = m_MaterialLibrary->deferredDirectionalShader;
@@ -908,7 +925,8 @@ namespace Engine
 
 		renderMesh(m_NDCPlane, dirShader);
 	}
-	// --------------------------------------------------------------------------------------------
+	
+
 	void Renderer::renderDeferredPointLight(PointLight* light)
 	{
 		Shader *pointShader = m_MaterialLibrary->deferredPointShader;
@@ -926,7 +944,7 @@ namespace Engine
 
 		renderMesh(m_DeferredPointMesh, pointShader);    
 	}
-	// --------------------------------------------------------------------------------------------
+	
 	void Renderer::renderShadowCastCommand(RenderCommand* command, const glm::mat4& projection, const glm::mat4& view)
 	{
 		Shader* shadowShader = m_MaterialLibrary->dirShadowShader;

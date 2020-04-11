@@ -1,3 +1,5 @@
+// PBR渲染管线
+
 #ifndef ENGINE_PBR_HPP
 #define ENGINE_PBR_HPP
 
@@ -29,14 +31,14 @@ namespace Engine
 	{
 		friend Renderer;
 		friend PostProcessor;
-	private:
+	public:
 		Renderer* m_Renderer;
 
 		std::vector<PBRCapture*> m_CaptureProbes;
 		PBRCapture*              m_SkyCapture;
 		RenderTarget*            m_RenderTargetBRDFLUT;
 
-		// pbr pre-processing (irradiance/pre-filter)
+		// PBR预处理
 		Material* m_PBRHdrToCubemap;
 		Material* m_PBRIrradianceCapture;
 		Material* m_PBRPrefilterCapture;

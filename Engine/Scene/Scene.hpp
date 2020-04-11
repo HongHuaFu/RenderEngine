@@ -10,7 +10,7 @@ namespace Engine
 	class SceneNode;
 
 	// 主场景
-	class Scene
+	class Scene 
 	{
 	public:
 		static SceneNode* Root; // 根节点
@@ -19,11 +19,8 @@ namespace Engine
 		static void Clear();
 
 		static SceneNode* MakeSceneNode();
-
 		static SceneNode* MakeSceneNode(Mesh* mesh, Material* material);
-
 		static SceneNode* MakeSceneNode(SceneNode* node);
-
 		static void DeleteSceneNode(SceneNode* node);
 	};
 }

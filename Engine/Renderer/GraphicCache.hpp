@@ -19,6 +19,7 @@ namespace Engine
 		GLenum m_PolygonMode;
 
 		unsigned int m_ActiveShaderID;
+
 	public:
 		GraphicCache();
 		~GraphicCache();
@@ -30,7 +31,6 @@ namespace Engine
 		void SetCull(bool enable);
 		void SetCullFace(GLenum face);
 		void SetPolygonMode(GLenum mode);
-
 		void SwitchShader(unsigned int ID);
 	};
 }

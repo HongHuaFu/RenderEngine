@@ -12,7 +12,7 @@ namespace Engine
 	struct FrustumPlane
 	{
 		glm::vec3 Normal;
-		float      D;
+		float D;
 
 		void SetNormalD(glm::vec3 normal, glm::vec3 point)
 		{

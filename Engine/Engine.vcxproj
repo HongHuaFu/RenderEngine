@@ -37,7 +37,16 @@
     <ClCompile Include="Shading\Shader.cpp" />
     <ClCompile Include="Shading\Texture.cpp" />
     <ClCompile Include="Shading\TextureCube.cpp" />
+    <ClCompile Include="UI\UI.cpp" />
+    <ClCompile Include="UI\UIFileBrowser.cpp" />
+    <ClCompile Include="UI\UILayout.cpp" />
     <ClCompile Include="Vendor\glad.c" />
+    <ClCompile Include="Vendor\imgui.cpp" />
+    <ClCompile Include="Vendor\imgui_demo.cpp" />
+    <ClCompile Include="Vendor\imgui_draw.cpp" />
+    <ClCompile Include="Vendor\imgui_impl_glfw.cpp" />
+    <ClCompile Include="Vendor\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Vendor\imgui_widgets.cpp" />
     <ClCompile Include="Vendor\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +87,19 @@
     <ClInclude Include="Shading\ShaderType.hpp" />
     <ClInclude Include="Shading\Texture.hpp" />
     <ClInclude Include="Shading\TextureCube.hpp" />
+    <ClInclude Include="UI\UI.hpp" />
+    <ClInclude Include="UI\UIFileBrowser.hpp" />
+    <ClInclude Include="UI\UIFileBrowserConfig.hpp" />
+    <ClInclude Include="UI\UILayout.hpp" />
+    <ClInclude Include="UI\UIStyle.hpp" />
+    <ClInclude Include="Vendor\imconfig.h" />
+    <ClInclude Include="Vendor\imgui.h" />
+    <ClInclude Include="Vendor\imgui_impl_glfw.h" />
+    <ClInclude Include="Vendor\imgui_impl_opengl3.h" />
+    <ClInclude Include="Vendor\imgui_internal.h" />
+    <ClInclude Include="Vendor\imstb_rectpack.h" />
+    <ClInclude Include="Vendor\imstb_textedit.h" />
+    <ClInclude Include="Vendor\imstb_truetype.h" />
     <ClInclude Include="Vendor\stb_image.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

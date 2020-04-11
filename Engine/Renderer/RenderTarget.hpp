@@ -26,6 +26,16 @@ namespace Engine
 		std::vector<Texture> m_ColorAttachments;
 
 	public:
+		inline void Bind()
+		{
+			glBindFramebuffer(GL_FRAMEBUFFER, ID);
+		}
+
+		inline void UnBind()
+		{
+			glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		}
+
 		RenderTarget(unsigned int width, unsigned int height, 
 					 unsigned int type = GL_UNSIGNED_BYTE, 
 					 unsigned int nrColorAttachments = 1, 

@@ -29,6 +29,15 @@
     <ClCompile Include="Renderer\PBR.cpp" />
     <ClCompile Include="Geometry\Cube.cpp" />
     <ClCompile Include="Scene\SkyBox.cpp" />
+    <ClCompile Include="Vendor\imgui.cpp" />
+    <ClCompile Include="Vendor\imgui_demo.cpp" />
+    <ClCompile Include="Vendor\imgui_draw.cpp" />
+    <ClCompile Include="Vendor\imgui_impl_glfw.cpp" />
+    <ClCompile Include="Vendor\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Vendor\imgui_widgets.cpp" />
+    <ClCompile Include="UI\UI.cpp" />
+    <ClCompile Include="UI\UILayout.cpp" />
+    <ClCompile Include="UI\UIFileBrowser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Log.hpp" />
@@ -69,5 +78,18 @@
     <ClInclude Include="Geometry\Cube.hpp" />
     <ClInclude Include="Geometry\Sphere.hpp" />
     <ClInclude Include="Scene\Light.hpp" />
+    <ClInclude Include="Vendor\imconfig.h" />
+    <ClInclude Include="Vendor\imgui.h" />
+    <ClInclude Include="Vendor\imgui_impl_glfw.h" />
+    <ClInclude Include="Vendor\imgui_impl_opengl3.h" />
+    <ClInclude Include="Vendor\imgui_internal.h" />
+    <ClInclude Include="Vendor\imstb_rectpack.h" />
+    <ClInclude Include="Vendor\imstb_textedit.h" />
+    <ClInclude Include="Vendor\imstb_truetype.h" />
+    <ClInclude Include="UI\UI.hpp" />
+    <ClInclude Include="UI\UIStyle.hpp" />
+    <ClInclude Include="UI\UILayout.hpp" />
+    <ClInclude Include="UI\UIFileBrowser.hpp" />
+    <ClInclude Include="UI\UIFileBrowserConfig.hpp" />
   </ItemGroup>
 </Project>

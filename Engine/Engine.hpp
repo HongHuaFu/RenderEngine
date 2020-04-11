@@ -19,5 +19,18 @@
 #include "Geometry/Mesh.hpp"
 #include "Geometry/Quad.hpp"
 
+#include "UI/UI.hpp"
+#include "UI/UILayout.hpp"
+
+#include "Renderer/RenderTarget.hpp"
+#include "Renderer/PBR.hpp"
+#include "Renderer/Renderer.hpp"
+
+#include "Shading/Material.hpp"
+#include "Scene/SkyBox.hpp"
+
+#include "Renderer/MaterialLibrary.hpp"
+#include "Scene/FlyCamera.hpp"
+
 
 #endif

@@ -9,10 +9,11 @@ namespace Engine
 	class Renderer;
 	class Camera;
 
+	// 后处理
 	class PostProcessor
 	{
 	public:
-		// resulting post-processor intermediate outputs
+		// 采样输出
 		Texture* DownSampledHalfOutput;
 		Texture* DownSampledQuarterOutput;
 		Texture* DownSampledEightOutput;
@@ -25,7 +26,7 @@ namespace Engine
 		Texture* BloomOutput3;
 		Texture* BloomOutput4;
 
-		// toggles
+		// 
 		bool Sepia      = false;
 		bool Vignette   = true;
 		bool Bloom      = true;

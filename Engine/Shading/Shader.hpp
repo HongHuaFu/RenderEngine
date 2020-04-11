@@ -67,7 +67,7 @@ namespace Engine
 		unsigned int m_ID;
 
 		// TODO: Ê¹ÓÃ×Öµä´úÌæ
-		std::vector<Uniform>         Uniforms;
+		std::vector<Uniform> Uniforms;
 		std::vector<VertexAttribute> Attributes;
 	};
 }

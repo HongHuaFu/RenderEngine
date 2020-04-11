@@ -4,7 +4,7 @@ namespace Engine
 {
 	GraphicCache::GraphicCache()
 	{
-
+		
 	}
 
 	GraphicCache::~GraphicCache()

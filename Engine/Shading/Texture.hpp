@@ -65,7 +65,7 @@ namespace Engine
 
 	public: // getter
 		inline unsigned int GetID(){ return m_ID; }
-
+		inline unsigned int& GetIDref(){ return m_ID; }
 	private:
 		unsigned int m_ID;
 

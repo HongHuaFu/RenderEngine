@@ -68,7 +68,7 @@ namespace Engine
 		glm::vec3 scale = glm::vec3(transform[0][0], transform[1][1], transform[2][2]);
 		if (scale.x < 0.0f) scale.x *= -1.0f;
 		if (scale.y < 0.0f) scale.y *= -1.0f;
-		if(scale.z < 0.0f) scale.z *= -1.0f;
+		if (scale.z < 0.0f) scale.z *= -1.0f;
 		return scale;
 	}
 

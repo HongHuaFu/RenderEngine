@@ -23,7 +23,7 @@ namespace Engine
 		m_Renderer = renderer;
 
 		m_RenderTargetBRDFLUT = new RenderTarget(128, 128, GL_HALF_FLOAT, 1, true);
-		Shader* hdrToCubemap      = Loader::LoadShader("pbr:hdr_to_cubemap", "shaders/pbr/cube_sample.vs", "shaders/pbr/spherical_to_cube.fs");
+		Shader* hdrToCubemap  = Loader::LoadShader("pbr:hdr_to_cubemap", "shaders/pbr/cube_sample.vs", "shaders/pbr/spherical_to_cube.fs");
 
 		Shader* irradianceCapture = Loader::LoadShader("pbr:irradiance", "shaders/pbr/cube_sample.vs", "shaders/pbr/irradiance_capture.fs");
 
@@ -48,10 +48,10 @@ namespace Engine
 		m_SceneEnvCube->Mesh = m_PBRCaptureCube;
 		m_SceneEnvCube->Material = m_PBRHdrToCubemap;
 
-		// - brdf integration
+		//// - brdf integration
 		m_Renderer->Blit(nullptr, m_RenderTargetBRDFLUT, m_PBRIntegrateBRDF);
 
-		// capture
+		//// capture
 		m_ProbeCaptureShader = Loader::LoadShader("pbr:capture", "shaders/capture.vs", "shaders/capture.fs");
 		m_ProbeCaptureShader->Use();
 		m_ProbeCaptureShader->SetInt("TexAlbedo", 0);

@@ -28,6 +28,8 @@ namespace Engine
 	{
 		friend PostProcessor;
 		friend PBR;
+
+
 	public:
 		// configuration
 		bool IrradianceGI = true;
@@ -37,7 +39,8 @@ namespace Engine
 		bool LightVolumes = false;
 		bool RenderProbes = false;
 		bool Wireframe    = false;
-	private:       
+
+	public:       
 		// render state
 		CommandBuffer* m_CommandBuffer;
 		GraphicCache   m_GLCache;
