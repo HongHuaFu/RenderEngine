@@ -1,5 +1,11 @@
 #pragma once
 
+// 材质系统
+// 存储Uniform和采样器的值
+// 每一个SceneNode都会至少包含一个材质，提交到渲染命令的时候
+// 将会遍历材质的Uniform/采样器数组
+// 并修改对应的Shader插槽
+
 #include <map>
 #include <string>
 #include <glm/glm.hpp>

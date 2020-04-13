@@ -19,6 +19,7 @@ namespace RE
 		Mesh* Mesh;
 		Material* Material;
 
+		// 用于视锥剔除等等
 		glm::vec3 BoxMin;
 		glm::vec3 BoxMax;
 	};
@@ -49,11 +50,25 @@ namespace RE
 		~CommandBuffer(); 
 
 		void Clear();
+		void Sort();
 
 		void Push(Mesh* mesh, Material* material, glm::mat4 transform = glm::mat4(1.0f), glm::mat4 prevTransform = glm::mat4(1.0f), glm::vec3 boxMin = glm::vec3(-99999.0f), glm::vec3 boxMax = glm::vec3(99999.0f), RenderTarget* target = nullptr);
 
-		// 获取当前commandbuffer的所有自定义渲染命令 
+		// 获取当前render target的所有自定义渲染命令队列
 		std::vector<RenderCommand> GetCustomRenderCommands(RenderTarget *target, bool cull = false);
+
+		// 获取默认渲染命令队列
+		std::vector<RenderCommand> GetDefaultRenderCommands(bool cull = false);
+
+		// 获取半透明物体渲染队列
+		// TODO：半透明物体的阴影投射与接受？
+		std::vector<RenderCommand> GetAlphaRenderCommands(bool cull = false);
+
+		// 取得所有的后处理渲染命令队列
+		std::vector<RenderCommand> GetPostProcessingRenderCommands();
+
+		// 取得所有投射阴影的渲染命令队列
+		std::vector<RenderCommand> GetShadowCastRenderCommands();
 	};
 
 }

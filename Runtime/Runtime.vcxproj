@@ -88,6 +88,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Api.hpp" />
+    <ClInclude Include="Render\PBRPipeline.hpp" />
+    <ClInclude Include="Render\Pipeline.hpp" />
+    <ClInclude Include="Scene\Camera.hpp" />
     <ClInclude Include="Core\Application.hpp" />
     <ClInclude Include="Core\Asset.hpp" />
     <ClInclude Include="Core\EntryPoint.hpp" />
@@ -118,6 +121,8 @@
     <ClInclude Include="Vendor\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Render\PBRPipeline.cpp" />
+    <ClCompile Include="Scene\Camera.cpp" />
     <ClCompile Include="Core\Application.cpp" />
     <ClCompile Include="Core\Asset.cpp" />
     <ClCompile Include="Core\Log.cpp" />

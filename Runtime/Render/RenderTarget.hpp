@@ -51,6 +51,8 @@ namespace RE
 
 		void ReSize(unsigned int width, unsigned int height);
 		void SetTarget(unsigned int target);
+	private:
+		friend class RenderHelper;
 	};
 }
 

@@ -38,6 +38,7 @@ namespace RE
 		void UnBind();
 	private:
 		friend class LoadTexture;
+		friend class RenderHelper;
 	};
 }
 

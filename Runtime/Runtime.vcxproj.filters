@@ -81,6 +81,12 @@
     <ClCompile Include="Scene\FlyCamera.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\Camera.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\PBRPipeline.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Api.hpp">
@@ -168,6 +174,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Scene\FlyCamera.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Camera.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Pipeline.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\PBRPipeline.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
