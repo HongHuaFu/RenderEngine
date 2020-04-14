@@ -103,12 +103,6 @@ namespace RE
 	{
 		UpdateView();
 	}
-	
-	void Camera::Update(float dt)
-	{
-		// 更新视锥体
-		Frustum.Update(this);
-	}
 
 	void Camera::SetPerspective(float fovy, float aspect, float near, float far)
 	{

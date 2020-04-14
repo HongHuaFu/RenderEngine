@@ -12,11 +12,9 @@ namespace RE
 	{
 		Scene::Root->AddChild(this);
 
-		auto shader = Asset::GetShader("SkyBox");
+		auto shader = Asset::LoadShader("SkyBox::No LOD","Asset/Shader/SkyBox.vs","Asset/Shader/SkyBox.fs");
 		Material = new RE::Material(shader);
 
-		auto hdr2cubemap = Asset::GetShader("Hdr2CubeMap");
-		m_Hdr2CubeMap = new RE::Material(hdr2cubemap);
 
 		Mesh = new Cube();
 		BoxMin = glm::vec3(-99999.0);
@@ -34,19 +32,9 @@ namespace RE
 
 	SkyBox::~SkyBox()
 	{
-		delete m_Hdr2CubeMap;
-		delete m_CubeMap;
+
 	}
 
-	void SkyBox::SetCubemap(Texture* hdr)
-	{
-		m_Hdr2CubeMap->SetTexture("hdrMap",hdr,0);
-
-		TextureCube hdrCube;
-		hdrCube.DefaultInitialize(128, 128, GL_RGB, GL_FLOAT);
-
-		
-	}
 
 	void SkyBox::SetCubemap(TextureCube* cubemap)
 	{

@@ -9,7 +9,7 @@ namespace RE
 		Pipeline() { }
 		virtual ~Pipeline() { }
 
-		virtual void Start(){ }
+		virtual void Start(Renderer* renderer){ }
 		virtual void RenderPushCommand(Renderer* renderer){ }
 	};
 }

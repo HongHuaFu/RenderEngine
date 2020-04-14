@@ -7,7 +7,6 @@ namespace RE
 	: Camera(position, forward, up)
 	{
 		Yaw = -90.0f;
-
 		Forward = forward;
 		m_WorldUp = Up;
 		m_TargetPosition = position;
@@ -15,8 +14,8 @@ namespace RE
 
 	void FlyCamera::Update(float dt)
 	{
+		Frustum.Update(this);
 		Camera::Update(dt);
-		
 		// 相机移动插值
 		Position = glm::lerp(Position, m_TargetPosition, glm::clamp(dt * Damping,0.0f,1.0f));
 		Yaw = glm::lerp(Yaw, m_TargetYaw, glm::clamp(dt * Damping * 2.0f,0.0f,1.0f));
@@ -31,6 +30,29 @@ namespace RE
 		Forward = glm::normalize(newForward);
 		Right = glm::normalize(glm::cross(Forward, m_WorldUp));
 		Up = glm::cross(Right, Forward);
+
+		// 更新View矩阵
+		UpdateView();
+	}
+
+	// 无插值更新
+	void FlyCamera::Update()
+	{
+		Frustum.Update(this);
+		Camera::Update();
+
+		Position = m_TargetPosition; 
+		Yaw = m_TargetYaw;
+		Pitch = m_TargetPitch;
+
+		glm::vec3 front;
+		front.x = cos(glm::radians(Yaw)) * cos(glm::radians(Pitch));
+		front.y = sin(glm::radians(Pitch));
+		front.z = sin(glm::radians(Yaw)) * cos(glm::radians(Pitch));
+		Forward = glm::normalize(front);
+		Right = glm::normalize(glm::cross(Forward, m_WorldUp));  
+		Up = glm::normalize(glm::cross(Right, Forward));
+
 
 		// 更新View矩阵
 		UpdateView();
@@ -58,7 +80,7 @@ namespace RE
 		float xmovement = deltaX * MouseSensitivty;
 		float ymovement = deltaY * MouseSensitivty;
 
-		m_TargetYaw   += xmovement;
+		m_TargetYaw += xmovement;
 		m_TargetPitch += ymovement;
 
 		if(m_TargetYaw == 0.0f) m_TargetYaw = 0.01f;
@@ -66,6 +88,7 @@ namespace RE
 
 		if (m_TargetPitch > 89.0f)  m_TargetPitch =  89.0f;
 		if (m_TargetPitch < -89.0f) m_TargetPitch = -89.0f;
+
 	}
 
 	void FlyCamera::InputScroll(float deltaX, float deltaY)

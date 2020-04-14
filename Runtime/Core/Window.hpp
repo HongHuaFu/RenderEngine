@@ -34,6 +34,9 @@ namespace RE
 			unsigned int Width, Height;
 			bool VSync;
 			EventCallbackFn EventCallback;
+
+			bool keysPressed[1024];
+			bool keysActive[1024];
 		};
 
 		WindowData m_Data;

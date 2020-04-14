@@ -4,12 +4,13 @@
 #include <vector>
 #include <string>
 
+#include "../Render/CommandBuffer.hpp"
+
 namespace RE
 {
 	class SceneNode;
 	class TextureCube;
 	class Renderer;
-	class RenderCommand;
 	class Texture;
 	class RenderTarget;
 	class Material;

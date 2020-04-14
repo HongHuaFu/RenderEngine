@@ -71,7 +71,7 @@ namespace RE
 			//相机放在中央 向NDC立方体的六个方向看去，fov设为90度，这时正好是1/6个立方体（一个等四棱锥）
 			Camera(position, glm::vec3(1.0f, 0.0f,  0.0f), glm::vec3(0.0f, -1.0f,  0.0f)),
 			Camera(position, glm::vec3(-1.0f, 0.0f,  0.0f), glm::vec3(0.0f, -1.0f,  0.0f)),
-			Camera(position, glm::vec3(0.0f,1.0f,  0.0f), glm::vec3(0.0f,  0.0f,  1.0f)),
+			Camera(position, glm::vec3(0.0f, 1.0f,  0.0f), glm::vec3(0.0f,  0.0f,  1.0f)),
 			Camera(position, glm::vec3(0.0f, -1.0f,  0.0f), glm::vec3(0.0f,  0.0f,-1.0f)),
 			Camera(position, glm::vec3(0.0f,  0.0f,  1.0f), glm::vec3(0.0f, -1.0f,  0.0f)),
 			Camera(position, glm::vec3(0.0f,  0.0f, -1.0f), glm::vec3(0.0f, -1.0f,  0.0f))
@@ -95,7 +95,7 @@ namespace RE
 
 		for (unsigned int i = 0; i < 6; ++i)
 		{
-			Camera *camera = &faceCameras[i];
+			Camera* camera = &faceCameras[i];
 
 			// 相机矩阵调整
 			// 角度设为90度，这时正好为1/6立方体，其中中心为相机

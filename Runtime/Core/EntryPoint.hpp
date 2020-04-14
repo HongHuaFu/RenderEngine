@@ -8,8 +8,6 @@ int main()
 {
 	RE::Log::Init();
 	auto app = RE::CreateApplication();
-
-	RE::Asset::Init();
 	app->Run();
 	delete app;
 

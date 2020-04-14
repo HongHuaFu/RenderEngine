@@ -4,6 +4,13 @@
 
 #include "../Event/Event_Window.hpp"
 #include "../Event/Event.hpp"
+#include "../Event/Event_Mouse.hpp"
+#include "../Event/Event_Key.hpp"
+
+#include "Asset.hpp"
+
+#include "../Render/Renderer.hpp"
+#include "../Scene/FlyCamera.hpp"
 
 
 namespace RE
@@ -20,6 +27,11 @@ namespace RE
 
 		m_Window = new Window(props);
 		m_Window->SetEventCallback(BIND_FN(Application::OnEvent));
+
+		Asset::Init();
+
+		
+
 	}
 
 
@@ -33,6 +45,8 @@ namespace RE
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<EventWindowClose>(BIND_FN(Application::OnWindowClose));
 		dispatcher.Dispatch<EventWindowResize>(BIND_FN(Application::OnWindowResize));
+		dispatcher.Dispatch<EventMouseMoved>(BIND_FN(Application::OnWindowMouseMoved));
+		dispatcher.Dispatch<EventKey>(BIND_FN(Application::OnWindowKey));
 
 		// TODO: 处理其它类型事件
 
@@ -48,6 +62,7 @@ namespace RE
 
 	bool Application::OnWindowResize(EventWindowResize& e)
 	{
+		m_Renderer->SetRenderSize(e.GetWidth(), e.GetHeight());
 		if (e.GetWidth() == 0 || e.GetHeight() == 0)
 		{
 			m_Minimized = true;
@@ -56,6 +71,44 @@ namespace RE
 
 		m_Minimized = false;
 		return false;
+	}
+
+	bool Application::OnWindowKey(EventKey &e)
+	{
+		if (e.GetKey() >= 0 && e.GetKey() < 1024)
+		{
+			if (e.GetAction() == GLFW_PRESS)
+				e.keysPressed[e.GetKey()] = true;
+			else if (e.GetAction() == GLFW_RELEASE)
+			{
+				e.keysPressed[e.GetKey()] = false;
+				e.keysActive[e.GetKey()] = false;
+			}
+		}
+		// TODO: 加入其它控制
+	}
+
+	bool Application::OnWindowMouseMoved(EventMouseMoved& e)
+	{
+		
+		if (e.firstMouse)
+		{
+			e.lastX = e.GetX();
+			e.lastY = e.GetY();
+			e.firstMouse = false;
+		}
+
+		float xoffset = e.GetX() - e.lastX;
+		float yoffset = -e.GetY() + e.lastY;  
+
+		e.lastX = e.GetX();
+		e.lastY = e.GetY();
+
+	/*	 LOG_TRACE("({0},{1})",e.GetX(),e.GetY());
+		 LOG_TRACE("static X Y: ({0},{1})",e.lastX,e.lastY);*/
+
+		m_Renderer->m_Camera->InputMouse(xoffset, yoffset);
+		return true;
 	}
 
 

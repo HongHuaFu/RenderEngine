@@ -90,8 +90,6 @@ namespace RE
 		Camera(); 
 		Camera(glm::vec3 position, glm::vec3 forward, glm::vec3 up);
 
-		void Update(float dt);
-
 		void SetPerspective(float fovy, float aspect, float near, float far);
 		void SetOrthographic(float left, float right, float top, float bottom, float near, float far);
 
@@ -99,5 +97,11 @@ namespace RE
 
 		float FrustumHeightAtDistance(float distance);
 		float DistanceAtFrustumHeight(float frustumHeight);
+
+		virtual void Update(){ }
+		virtual void Update(float dt){ }
+		virtual void InputKey(float dt, CAMERA_MOVEMENT direction){ }
+		virtual void InputMouse(float deltaX, float deltaY){ }
+		virtual void InputScroll(float deltaX, float deltaY){ }
 	};
 }

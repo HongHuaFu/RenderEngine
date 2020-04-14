@@ -9,10 +9,13 @@
 #include "../Render/TextureCube.hpp"
 #include "../Render//Texture.hpp"
 #include "../Scene/Camera.hpp"
+#include "../Scene/FlyCamera.hpp"
 #include "../Scene/SceneNode.hpp"
 #include "../Core/Macro.hpp"
 #include "../Render/Pipeline.hpp"
-#include "../Render/PBRPipeline.hpp"
+#include "../Render/RenderHelper.hpp"
+#include "../Pipeline/PP_PBRIBLForward.hpp"
+#include "../Render/RenderTarget.hpp"
 #include <vector>
 #include <stack>
 
@@ -26,15 +29,18 @@ namespace RE
 	{
 		delete m_GraphicCache;
 		delete m_CommandBuffer;
-		delete m_PBRPipeline;
+		delete m_PP_PBRIBLForward;
+		delete m_RenderHelper;
 	}
 
 	void Renderer::Init()
 	{
 		m_CommandBuffer = new CommandBuffer(this);
 		m_GraphicCache = new GraphicCache();
-		m_PBRPipeline = new PBRPipeline();
-
+		m_CurrentRenderTargetCustom = nullptr;
+		m_RenderHelper = new RenderHelper(this);
+		m_CustomTarget = new RenderTarget(1, 1, GL_HALF_FLOAT, 1, true);
+		m_Camera = new FlyCamera(glm::vec3(0.0f, 0.0f, 0.0f));
 		m_GraphicCache->SetDepthTest(true);
 		m_GraphicCache->SetCull(true);
 
@@ -44,7 +50,28 @@ namespace RE
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClearDepth(1.0f);
 
-		m_PBRPipeline->Start();
+		m_PP_PBRIBLForward = new PP_PBRIBLForward();
+		m_PP_PBRIBLForward->Start(this);
+	}
+
+	Camera* Renderer::GetCamera()
+	{
+		return m_Camera;
+	}
+
+
+	void Renderer::SetRenderSize(unsigned int width,unsigned int height)
+	{
+		m_RenderSize.x = width;
+		m_RenderSize.y = height;
+		m_CustomTarget->ReSize(width, height);
+
+		m_Camera->SetPerspective(glm::radians(60.0f), (float)width / (float)height, 0.1f, 100.0f);
+	}
+
+	glm::vec2 Renderer::GetRenderSize()
+	{
+		return m_RenderSize;
 	}
 
 	void Renderer::PushRender(Mesh* mesh,Material* material,glm::mat4 transform,glm::mat4 prevFrameTransform)
@@ -105,7 +132,7 @@ namespace RE
 		pipeline->RenderPushCommand(this);
 	}
 
-	void Renderer::RenderCustomCommand(RenderCommand* command,Camera* customCamera,bool updateGLSettings)
+	void Renderer::RenderCustomCommand(RenderCommand* command,Camera* customCamera,bool updateGLSettings,bool isSkybox)
 	{
 		Material* material = command->Material;
 		Mesh* mesh = command->Mesh;
@@ -125,14 +152,26 @@ namespace RE
 		}
 
 		material->GetShader()->Use();
+
+		// TODO: 使用运行时查询机制
 		// 如果使用的自定义相机。则需要修改全局的UBO
 		if (customCamera)
 		{
 			material->GetShader()->SetMatrix("projection", customCamera->Projection);
-			material->GetShader()->SetMatrix("view",customCamera->View);
+
+			if(isSkybox)
+			{
+				material->GetShader()->SetMatrix("view",glm::mat4(glm::mat3(customCamera->View)));
+			}
+			else
+			{
+				material->GetShader()->SetMatrix("view",customCamera->View);
+			}
+			
 			material->GetShader()->SetVector("camPos",customCamera->Position);
 		}
 
+		// 单个网格的模型矩阵设置
 		material->GetShader()->SetMatrix("model", command->Transform);
 		material->GetShader()->SetMatrix("prevModel", command->PrevTransform);
 
@@ -188,6 +227,11 @@ namespace RE
 		}
 
 		RenderMesh(mesh, material->GetShader());
+	}
+
+	void Renderer::UpdateGlobalUBO()
+	{
+		
 	}
 
 

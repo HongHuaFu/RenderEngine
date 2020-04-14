@@ -175,6 +175,8 @@ namespace RE
 		// 因为视锥体外的物体 也可能会对视锥体内阴影生成产生影响
 		// 所以没有CPU端的视锥剔除
 
+		
+
 		std::vector<RenderCommand> commands;
 		// 先遍历默认的渲染命令 取出产生阴影的渲染命令
 		for (auto it = m_DefaultRenderCommands.begin(); it != m_DefaultRenderCommands.end(); ++it)
@@ -193,6 +195,8 @@ namespace RE
 				commands.push_back(*it);
 			}
 		}
+
+		// TODO: 加入半透明物体的阴影映射
 		return commands;
 	}
 }

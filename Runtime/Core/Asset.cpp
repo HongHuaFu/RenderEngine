@@ -22,8 +22,7 @@ namespace RE
 	{
 		// 显示调用Asset::Init()来初始化
 		// 加载通用资源
-		LoadShader("Hdr2CubeMap","Asset/Shader/Hdr2CubeMap.vs","Asset/Shader/Hdr2CubeMap.fs");
-		LoadShader("SkyBox","Asset/Shader/SkyBox.vs","Asset/Shader/SkyBox.fs");
+		
 		
 	}
 

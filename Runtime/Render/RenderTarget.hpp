@@ -53,6 +53,7 @@ namespace RE
 		void SetTarget(unsigned int target);
 	private:
 		friend class RenderHelper;
+		friend class PP_PBRIBLForward;
 	};
 }
 

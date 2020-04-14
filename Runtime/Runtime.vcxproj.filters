@@ -84,7 +84,13 @@
     <ClCompile Include="Scene\Camera.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Render\PBRPipeline.cpp">
+    <ClCompile Include="Pipeline\PP_PBRDeffered.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Pipeline\PP_PBRIBLForward.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Event\Event_Implement.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -182,7 +188,19 @@
     <ClInclude Include="Render\Pipeline.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Render\PBRPipeline.hpp">
+    <ClInclude Include="Scene\Light.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Pipeline\PP_PBRDeffered.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Pipeline\PP_PBRIBLForward.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\Event_Key.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\Event_Mouse.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

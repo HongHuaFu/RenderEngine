@@ -12,6 +12,8 @@ namespace RE
 	class Event;
 	class EventWindowClose;
 	class EventWindowResize;
+	class EventMouseMoved;
+	class EventKey;
 	class Renderer;
 	class RenderTarget;
 
@@ -30,6 +32,8 @@ namespace RE
 		// ´°¿ÚÊÂ¼þ
 		bool OnWindowClose(EventWindowClose&);
 		bool OnWindowResize(EventWindowResize&);
+		bool OnWindowMouseMoved(EventMouseMoved&);
+		bool OnWindowKey(EventKey&);
 
 		void Run();
 
@@ -38,6 +42,7 @@ namespace RE
 
 	protected:
 		Window* m_Window;
+		Renderer* m_Renderer;
 
 		bool m_Running = true;
 		bool m_Minimized = false;

@@ -2,6 +2,8 @@
 #include "Macro.hpp"
 
 #include "../Event/Event_Window.hpp"
+#include "../Event/Event_Mouse.hpp"
+#include "../Event/Event_Key.hpp"
 
 
 namespace RE
@@ -51,6 +53,8 @@ namespace RE
 
 		glfwMakeContextCurrent(m_WindowPtr);
 
+		//GLFW捕捉鼠标
+		glfwSetInputMode(m_WindowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 		{
@@ -75,7 +79,6 @@ namespace RE
 			data.Height = height;
 
 			// 总是在这里设置一次vieport
-			glViewport(0,0,width,height);
 			EventWindowResize event(width, height);
 			data.EventCallback(event);
 		});
@@ -87,6 +90,21 @@ namespace RE
 			data.EventCallback(event);
 		});
 
+		glfwSetKeyCallback(m_WindowPtr,[](GLFWwindow *window,int key,int scancode,int action,int mods)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			EventKey event(key,action);
+			data.EventCallback(event);
+		});
+
+		glfwSetCursorPosCallback(m_WindowPtr, [](GLFWwindow* window, double xPos, double yPos)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			EventMouseMoved event((float)xPos, (float)yPos);
+			data.EventCallback(event);
+		});
 	}
 
 

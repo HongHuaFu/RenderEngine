@@ -7,7 +7,9 @@ namespace RE
 	enum class EventType
 	{
 		None = 0,
-		WindowClose, WindowResize
+		WindowClose, WindowResize,
+		MouseMoved,
+		Key
 	};
 
 	enum EventCategory

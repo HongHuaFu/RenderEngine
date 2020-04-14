@@ -88,7 +88,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Api.hpp" />
-    <ClInclude Include="Render\PBRPipeline.hpp" />
+    <ClInclude Include="Event\Event_Key.hpp" />
+    <ClInclude Include="Event\Event_Mouse.hpp" />
+    <ClInclude Include="Pipeline\PP_PBRIBLForward.hpp" />
+    <ClInclude Include="Scene\Light.hpp" />
+    <ClInclude Include="Pipeline\PP_PBRDeffered.hpp" />
     <ClInclude Include="Render\Pipeline.hpp" />
     <ClInclude Include="Scene\Camera.hpp" />
     <ClInclude Include="Core\Application.hpp" />
@@ -121,7 +125,9 @@
     <ClInclude Include="Vendor\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Render\PBRPipeline.cpp" />
+    <ClCompile Include="Event\Event_Implement.cpp" />
+    <ClCompile Include="Pipeline\PP_PBRIBLForward.cpp" />
+    <ClCompile Include="Pipeline\PP_PBRDeffered.cpp" />
     <ClCompile Include="Scene\Camera.cpp" />
     <ClCompile Include="Core\Application.cpp" />
     <ClCompile Include="Core\Asset.cpp" />
