@@ -6,7 +6,8 @@ namespace RE
 	FlyCamera::FlyCamera(glm::vec3 position, glm::vec3 forward, glm::vec3 up) 
 	: Camera(position, forward, up)
 	{
-		Yaw = -90.0f;
+		m_TargetYaw = Yaw = 0.0f;
+		m_TargetPitch = Pitch = 0.0f;
 		Forward = forward;
 		m_WorldUp = Up;
 		m_TargetPosition = position;
@@ -24,9 +25,9 @@ namespace RE
 		// 计算正交坐标系
 		// 施密特正交化
 		glm::vec3 newForward;
-		newForward.x = cos(0.0174533 * Pitch) * cos(0.0174533 * Yaw);
-		newForward.y = sin(0.0174533 * Pitch);
-		newForward.z = cos(0.0174533 * Pitch) * sin(0.0174533 * Yaw);
+		newForward.x = cos(glm::radians(Pitch)) * cos(glm::radians(Yaw));
+		newForward.y = sin(glm::radians(Pitch));
+		newForward.z = cos(glm::radians(Pitch)) * sin(glm::radians(Yaw));
 		Forward = glm::normalize(newForward);
 		Right = glm::normalize(glm::cross(Forward, m_WorldUp));
 		Up = glm::cross(Right, Forward);
@@ -83,9 +84,7 @@ namespace RE
 		m_TargetYaw += xmovement;
 		m_TargetPitch += ymovement;
 
-		if(m_TargetYaw == 0.0f) m_TargetYaw = 0.01f;
-		if(m_TargetPitch == 0.0f) m_TargetPitch = 0.01f;
-
+		// 俯仰角限制
 		if (m_TargetPitch > 89.0f)  m_TargetPitch =  89.0f;
 		if (m_TargetPitch < -89.0f) m_TargetPitch = -89.0f;
 

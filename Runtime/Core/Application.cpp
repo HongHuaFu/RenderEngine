@@ -99,14 +99,14 @@ namespace RE
 		}
 
 		float xoffset = e.GetX() - e.lastX;
-		float yoffset = -e.GetY() + e.lastY;  
+		float yoffset = e.lastY -e.GetY();  
 
 		e.lastX = e.GetX();
 		e.lastY = e.GetY();
 
 	/*	 LOG_TRACE("({0},{1})",e.GetX(),e.GetY());
 		 LOG_TRACE("static X Y: ({0},{1})",e.lastX,e.lastY);*/
-
+		LOG_TRACE("offset X Y: ({0},{1})",xoffset,yoffset);
 		m_Renderer->m_Camera->InputMouse(xoffset, yoffset);
 		return true;
 	}

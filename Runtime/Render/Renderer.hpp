@@ -11,7 +11,6 @@ namespace RE
 	class Mesh;
 	class Shader;
 	class Camera;
-	class FlyCamera;
 	class RenderCommand;
 	class SceneNode;
 	class Material;
@@ -53,7 +52,7 @@ namespace RE
 		CommandBuffer* m_CommandBuffer;
 		GraphicCache* m_GraphicCache;
 		glm::vec2 m_RenderSize;
-		FlyCamera* m_Camera;
+		Camera* m_Camera;
 		PP_PBRIBLForward* m_PP_PBRIBLForward;
 		RenderTarget* m_CurrentRenderTargetCustom;
 		RenderHelper* m_RenderHelper;

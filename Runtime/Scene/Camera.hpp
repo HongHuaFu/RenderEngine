@@ -82,7 +82,7 @@ namespace RE
 		float Aspect;
 		float Near;
 		float Far;
-		bool  Perspective;
+		bool Perspective;
 
 		CameraFrustum Frustum;
 

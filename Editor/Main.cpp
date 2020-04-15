@@ -48,8 +48,8 @@ namespace RE
 			//if (EventKey::keysPressed[GLFW_KEY_Q])
 			//	m_Renderer->m_Camera->InputKey(deltaTime, CAMERA_MOVEMENT::DOWN);
 			
-			//m_Renderer->m_Camera->Update(deltaTime);
 			m_Renderer->m_Camera->Update(deltaTime);
+			//m_Renderer->m_Camera->Update();
 			m_Renderer->PushRender(m_SkyBox);
 			m_Renderer->RenderPushedCommands(m_Renderer->m_PP_PBRIBLForward);
 		}

@@ -11,9 +11,11 @@ namespace RE
 		float Pitch;
 
 		float MovementSpeed = 10.0f;
-		float MouseSensitivty =  0.1f;
-		float Damping  =  5.0f;
+		float MouseSensitivty = 0.1f;
+		float Damping = 5.0f;
 	private:
+
+		// 用于插值的临时变量
 		glm::vec3 m_TargetPosition;
 		glm::vec3 m_WorldUp;
 		float m_TargetYaw;
