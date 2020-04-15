@@ -67,8 +67,8 @@ namespace RE
 		renderer->m_RenderHelper->Blit(nullptr,m_IntegrateBRDF, m_IntegrateBRDFLUT);
 
 		Texture* hdrMap = Asset::LoadHDR("MonoLake.hdr", "Asset/Texture/MonoLake.hdr");
-		//m_SkyBox = HDR2Cubemap(hdrMap);
-		m_SkyBox = Asset::LoadTextureCube("GN_ENV","Asset/Texture/gn_env/");
+		m_SkyBox = HDR2Cubemap(hdrMap);
+		//m_SkyBox = Asset::LoadTextureCube("GN_ENV","Asset/Texture/gn_env/");
 	}
 
 

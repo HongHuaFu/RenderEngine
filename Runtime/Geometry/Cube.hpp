@@ -4,11 +4,11 @@
 
 namespace RE
 {
-	// -0.5f +0.5fКазг,
-	class Cube : public Mesh
+	// -1f +1fКазг,
+	class Cube1 : public Mesh
 	{
 	public:
-		Cube()
+		Cube1()
 		{
 			Positions = std::vector<glm::vec3> 
 			{
@@ -148,10 +148,11 @@ namespace RE
 		}
 	};
 
-	class CubeUint : public Mesh
+	// -0.5f +0.5fКазг,
+	class Cube : public Mesh
 	{
 	public:
-		CubeUint()
+		Cube()
 		{
 			Positions = std::vector<glm::vec3> 
 			{

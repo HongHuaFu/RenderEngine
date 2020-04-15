@@ -37,16 +37,16 @@ namespace RE
 				m_Renderer->m_Camera->InputKey(deltaTime, CAMERA_MOVEMENT::FORWARD);
 				LOG_TRACE("Press W/Up key.");
 			}
-			//if (EventKey::keysPressed[GLFW_KEY_S] || EventKey::keysPressed[GLFW_KEY_DOWN])
-			//	m_Renderer->m_Camera->InputKey(deltaTime, CAMERA_MOVEMENT::BACK);
-			//if (EventKey::keysPressed[GLFW_KEY_A] || EventKey::keysPressed[GLFW_KEY_LEFT])
-			//	m_Renderer->m_Camera->InputKey(deltaTime, CAMERA_MOVEMENT::LEFT);
-			//if (EventKey::keysPressed[GLFW_KEY_D] || EventKey::keysPressed[GLFW_KEY_RIGHT])
-			//	m_Renderer->m_Camera->InputKey(deltaTime, CAMERA_MOVEMENT::RIGHT);
-			//if (EventKey::keysPressed[GLFW_KEY_E])
-			//	m_Renderer->m_Camera->InputKey(deltaTime, CAMERA_MOVEMENT::UP);
-			//if (EventKey::keysPressed[GLFW_KEY_Q])
-			//	m_Renderer->m_Camera->InputKey(deltaTime, CAMERA_MOVEMENT::DOWN);
+			if (EventKey::keysPressed[GLFW_KEY_S] || EventKey::keysPressed[GLFW_KEY_DOWN])
+				m_Renderer->m_Camera->InputKey(deltaTime, CAMERA_MOVEMENT::BACK);
+			if (EventKey::keysPressed[GLFW_KEY_A] || EventKey::keysPressed[GLFW_KEY_LEFT])
+				m_Renderer->m_Camera->InputKey(deltaTime, CAMERA_MOVEMENT::LEFT);
+			if (EventKey::keysPressed[GLFW_KEY_D] || EventKey::keysPressed[GLFW_KEY_RIGHT])
+				m_Renderer->m_Camera->InputKey(deltaTime, CAMERA_MOVEMENT::RIGHT);
+			if (EventKey::keysPressed[GLFW_KEY_E])
+				m_Renderer->m_Camera->InputKey(deltaTime, CAMERA_MOVEMENT::UP);
+			if (EventKey::keysPressed[GLFW_KEY_Q])
+				m_Renderer->m_Camera->InputKey(deltaTime, CAMERA_MOVEMENT::DOWN);
 			
 			m_Renderer->m_Camera->Update(deltaTime);
 			//m_Renderer->m_Camera->Update();

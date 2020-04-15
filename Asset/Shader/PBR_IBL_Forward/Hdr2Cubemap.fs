@@ -3,8 +3,8 @@ out vec4 FragColor;
 in vec3 WorldPos;
 
 //从等距柱状投影图转换为立方体贴图
-
 uniform sampler2D hdrmap;
+
 const vec2 invAtan = vec2(0.1591, 0.3183);
 
 //柱面坐标转换

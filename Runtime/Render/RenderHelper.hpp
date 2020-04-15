@@ -28,8 +28,10 @@ namespace RE
 	public:
 		RenderHelper(Renderer* r);
 		~RenderHelper();
+
 	public:
 		void RenderToCubeMap(SceneNode* scene, TextureCube* target, glm::vec3 position = glm::vec3(0.0f), unsigned int mipLevel = 0);
+
 		void RenderToCubemap(std::vector<RenderCommand>& renderCommands, TextureCube* target, glm::vec3 position = glm::vec3(0.0f), unsigned int mipLevel = 0);
 
 		// 一次全屏的后处理Blit

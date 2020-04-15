@@ -41,7 +41,7 @@ namespace RE
 		
 
 		// 处理单次Render Command。
-		void RenderCustomCommand(RenderCommand* command,Camera* customCamera,bool updateGLSettings = true,bool isSkybox = false);
+		void RenderCustomCommand(RenderCommand* command,Camera* customCamera,bool updateGLSettings = true);
 
 		void UpdateGlobalUBO();
 

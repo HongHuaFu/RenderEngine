@@ -132,7 +132,7 @@ namespace RE
 		pipeline->RenderPushCommand(this);
 	}
 
-	void Renderer::RenderCustomCommand(RenderCommand* command,Camera* customCamera,bool updateGLSettings,bool isSkybox)
+	void Renderer::RenderCustomCommand(RenderCommand* command,Camera* customCamera,bool updateGLSettings)
 	{
 		Material* material = command->Material;
 		Mesh* mesh = command->Mesh;
@@ -158,16 +158,7 @@ namespace RE
 		if (customCamera)
 		{
 			material->GetShader()->SetMatrix("projection", customCamera->Projection);
-
-			if(isSkybox)
-			{
-				material->GetShader()->SetMatrix("view",glm::mat4(glm::mat3(customCamera->View)));
-			}
-			else
-			{
-				material->GetShader()->SetMatrix("view",customCamera->View);
-			}
-			
+			material->GetShader()->SetMatrix("view",customCamera->View);
 			material->GetShader()->SetVector("camPos",customCamera->Position);
 		}
 

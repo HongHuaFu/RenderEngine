@@ -25,8 +25,8 @@ namespace RE
 	RenderHelper::~RenderHelper()
 	{
 		delete m_Quad;
-		glDeleteFramebuffers(1,&m_FramebufferCubemap);
-		glDeleteRenderbuffers(1,&m_CubemapDepthRBO);
+		// glDeleteFramebuffers(1,&m_FramebufferCubemap);
+		// glDeleteRenderbuffers(1,&m_CubemapDepthRBO);
 	}
 
 	// 将当前场景节点渲染到一个CubeMap中
@@ -67,11 +67,14 @@ namespace RE
 
 	void RenderHelper::RenderToCubemap(std::vector<RenderCommand>& renderCommands,TextureCube* target,glm::vec3 position,unsigned int mipLevel)
 	{
+		// 渲染开始前解绑
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		Camera faceCameras[6] = {
 			//相机放在中央 向NDC立方体的六个方向看去，fov设为90度，这时正好是1/6个立方体（一个等四棱锥）
-			Camera(position, glm::vec3(1.0f, 0.0f,  0.0f), glm::vec3(0.0f, -1.0f,  0.0f)),
-			Camera(position, glm::vec3(-1.0f, 0.0f,  0.0f), glm::vec3(0.0f, -1.0f,  0.0f)),
-			Camera(position, glm::vec3(0.0f, 1.0f,  0.0f), glm::vec3(0.0f,  0.0f,  1.0f)),
+			
+			Camera(position, glm::vec3(1.0f,  0.0f,  0.0f), glm::vec3(0.0f, -1.0f,  0.0f)),
+			Camera(position, glm::vec3(-1.0f,  0.0f,  0.0f), glm::vec3(0.0f, -1.0f,  0.0f)),
+			Camera(position, glm::vec3(0.0f,  1.0f,  0.0f), glm::vec3(0.0f,  0.0f,  1.0f)),
 			Camera(position, glm::vec3(0.0f, -1.0f,  0.0f), glm::vec3(0.0f,  0.0f,-1.0f)),
 			Camera(position, glm::vec3(0.0f,  0.0f,  1.0f), glm::vec3(0.0f, -1.0f,  0.0f)),
 			Camera(position, glm::vec3(0.0f,  0.0f, -1.0f), glm::vec3(0.0f, -1.0f,  0.0f))
@@ -99,24 +102,36 @@ namespace RE
 
 			// 相机矩阵调整
 			// 角度设为90度，这时正好为1/6立方体，其中中心为相机
-			camera->SetPerspective(glm::radians(90.0f), width / height, 0.1f, 100.0f);
+			camera->SetPerspective(glm::radians(90.0f), 1.0f, 0, 100.0f);
 
-			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-				GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, target->m_ID, mipLevel);
+			// 渲染结果绑定到对应立方体贴图的面上
+			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, target->m_ID, mipLevel);
 
 			// 渲染前清除
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			for (unsigned int i = 0; i < renderCommands.size(); ++i)
+			glClearColor(1.0f,0.0f,0.0f,1.0f);
+			if(i==5)
+			{
+				glClearColor(1.0f,1.0f,0.0f,1.0f);
+			}
+
+			// 每个面都要渲染所有的渲染命令
+			for (unsigned int j = 0; j < renderCommands.size(); ++j)
 			{
 				// 生成立方体贴图的材质类型应该为custom
-				LOG_ASSERT(renderCommands[i].Material->Type == MaterialType::CUSTOM);
-				m_Renderer->RenderCustomCommand(&renderCommands[i], camera);
+				LOG_ASSERT(renderCommands[j].Material->Type == MaterialType::CUSTOM);
+				m_Renderer->RenderCustomCommand(&renderCommands[j],camera);
 			}
 		}
+
+		// 每次渲染结束后记得解绑
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
 
 	void RenderHelper::Blit(Texture* src,Material* material,RenderTarget* dst,std::string textureUniformName)
 	{
+		// 渲染开始前解绑
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		// 若设置了目标fbo则绑定目标fbo
 		if (dst)
 		{
@@ -153,5 +168,8 @@ namespace RE
 		command.Material = material;
 		command.Mesh = m_Quad;
 		m_Renderer->RenderCustomCommand(&command, nullptr);
+
+		// 解绑
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
 }
