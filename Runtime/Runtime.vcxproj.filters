@@ -93,6 +93,9 @@
     <ClCompile Include="Event\Event_Implement.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="IO\LoadMesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Api.hpp">
@@ -201,6 +204,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Event\Event_Mouse.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="IO\LoadMesh.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

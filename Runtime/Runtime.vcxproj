@@ -90,6 +90,7 @@
     <ClInclude Include="Api.hpp" />
     <ClInclude Include="Event\Event_Key.hpp" />
     <ClInclude Include="Event\Event_Mouse.hpp" />
+    <ClInclude Include="IO\LoadMesh.hpp" />
     <ClInclude Include="Pipeline\PP_PBRIBLForward.hpp" />
     <ClInclude Include="Scene\Light.hpp" />
     <ClInclude Include="Pipeline\PP_PBRDeffered.hpp" />
@@ -126,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Event\Event_Implement.cpp" />
+    <ClCompile Include="IO\LoadMesh.cpp" />
     <ClCompile Include="Pipeline\PP_PBRIBLForward.cpp" />
     <ClCompile Include="Pipeline\PP_PBRDeffered.cpp" />
     <ClCompile Include="Scene\Camera.cpp" />

@@ -7,6 +7,8 @@ namespace RE
 	class TextureCube
 	{
 	private:
+		friend class PP_PBRIBLForward;
+	private:
 		unsigned int m_ID;
 		unsigned int m_InternalFormat = GL_RGBA;           
 		unsigned int m_Format = GL_RGBA;           

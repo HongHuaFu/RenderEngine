@@ -82,6 +82,8 @@ namespace RE
 			}
 			texture.m_Width = width;
 			texture.m_Height = height;
+
+			LOG_TRACE("Load a HDR texture success: {0}.",path);
 		}
 		else
 		{

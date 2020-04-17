@@ -3,8 +3,6 @@
 
 #include "Editor.hpp"
 
-
-
 namespace RE
 {
 	class Sandbox : public Application
@@ -35,7 +33,7 @@ namespace RE
 			if(EventKey::keysPressed[GLFW_KEY_W]||EventKey::keysPressed[GLFW_KEY_UP])
 			{
 				m_Renderer->m_Camera->InputKey(deltaTime, CAMERA_MOVEMENT::FORWARD);
-				LOG_TRACE("Press W/Up key.");
+				// LOG_TRACE("Press W/Up key.");
 			}
 			if (EventKey::keysPressed[GLFW_KEY_S] || EventKey::keysPressed[GLFW_KEY_DOWN])
 				m_Renderer->m_Camera->InputKey(deltaTime, CAMERA_MOVEMENT::BACK);

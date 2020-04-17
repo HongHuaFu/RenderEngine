@@ -26,7 +26,7 @@ namespace RE
 		Renderer* m_Renderer;
 		Material* m_HdrToCubemap;
 		Material* m_IrradianceCapture;
-		Material* m_Prefilter;
+		Material* m_PrefilterMat;
 		Material* m_IntegrateBRDF;
 
 		Mesh* m_Cube;
@@ -35,11 +35,11 @@ namespace RE
 		RenderTarget* m_IntegrateBRDFLUT;
 		TextureCube* m_SkyBox;
 		TextureCube* m_Irradiance;
-		TextureCube* m_Prefiltered;
+		TextureCube* m_Prefiltere;
 
 		unsigned int m_CaptureFBO;
 	public:
 		~PP_PBRIBLForward();
-		TextureCube* GetSkyBoxCubemap(){ return m_SkyBox; }
+		TextureCube* GetSkyBoxCubemap(){ return m_Prefiltere; }
 	};
 }
