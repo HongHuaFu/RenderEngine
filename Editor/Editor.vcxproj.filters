@@ -39,6 +39,18 @@
     <ClCompile Include="Editor.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Widget.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\Console.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\ViewPort.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\Hierarchy.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImGui\imconfig.h">
@@ -68,10 +80,19 @@
     <ClInclude Include="Editor.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Widget\Widget_Viewport.hpp">
+    <ClInclude Include="Style.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Style.hpp">
+    <ClInclude Include="Widget.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Widgets\Console.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Widgets\ViewPort.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Widgets\Hierarchy.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

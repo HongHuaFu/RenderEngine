@@ -105,9 +105,8 @@ namespace RE
 		e.lastY = e.GetY();
 
 	/*	 LOG_TRACE("({0},{1})",e.GetX(),e.GetY());
-		 LOG_TRACE("static X Y: ({0},{1})",e.lastX,e.lastY);
-	     LOG_TRACE("offset X Y: ({0},{1})",xoffset,yoffset);
-	*/
+		 LOG_TRACE("static X Y: ({0},{1})",e.lastX,e.lastY);*/
+		//LOG_TRACE("offset X Y: ({0},{1})",xoffset,yoffset);
 		m_Renderer->m_Camera->InputMouse(xoffset, yoffset);
 		return true;
 	}

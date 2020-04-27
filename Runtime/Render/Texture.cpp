@@ -96,6 +96,7 @@ namespace RE
 			LOG_ASSERT(height > 0 && depth > 0 ,"Texture height or depth <= 0.");
 			glTexImage3D(GL_TEXTURE_3D, 0, m_InternalFormat, width, height, depth, 0, m_Format, m_Type, 0);
 		}
+		UnBind();
 	}
 
 	void Texture::Bind(int unit)

@@ -54,7 +54,7 @@ namespace RE
 		glfwMakeContextCurrent(m_WindowPtr);
 
 		//GLFW²¶×½Êó±ê
-		glfwSetInputMode(m_WindowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		// glfwSetInputMode(m_WindowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 		{

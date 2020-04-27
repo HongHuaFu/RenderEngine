@@ -3,6 +3,8 @@
 
 #include "Editor.hpp"
 
+
+
 namespace RE
 {
 	class Sandbox : public Application
@@ -16,7 +18,13 @@ namespace RE
 
 			m_SkyBox = new SkyBox();
 			m_SkyBox->SetCubemap(m_Renderer->m_PP_PBRIBLForward->GetSkyBoxCubemap());
+
+			RE::Scene::Root->AddChild(m_SkyBox);
+
+			m_Editor = new Editor();
+			m_Editor->OnStart((GLFWwindow*)(m_Window->GetNativeWindow()),m_Renderer);
 		}
+
 
 		virtual void OnUpdate() override
 		{
@@ -30,10 +38,12 @@ namespace RE
 			deltaTime = currentFrameTime - lastFrameTime;
 			lastFrameTime = currentFrameTime;
 
+			
+
 			if(EventKey::keysPressed[GLFW_KEY_W]||EventKey::keysPressed[GLFW_KEY_UP])
 			{
 				m_Renderer->m_Camera->InputKey(deltaTime, CAMERA_MOVEMENT::FORWARD);
-				// LOG_TRACE("Press W/Up key.");
+				LOG_TRACE("Press W/Up key.");
 			}
 			if (EventKey::keysPressed[GLFW_KEY_S] || EventKey::keysPressed[GLFW_KEY_DOWN])
 				m_Renderer->m_Camera->InputKey(deltaTime, CAMERA_MOVEMENT::BACK);
@@ -46,16 +56,24 @@ namespace RE
 			if (EventKey::keysPressed[GLFW_KEY_Q])
 				m_Renderer->m_Camera->InputKey(deltaTime, CAMERA_MOVEMENT::DOWN);
 			
+			m_Editor->OnTick();
+
 			m_Renderer->m_Camera->Update(deltaTime);
-			//m_Renderer->m_Camera->Update();
-			m_Renderer->PushRender(m_SkyBox);
+
+
+			m_Renderer->PushRender(RE::Scene::Root);
 			m_Renderer->RenderPushedCommands(m_Renderer->m_PP_PBRIBLForward);
+
+
+			
+			m_Editor->PushRender();
 		}
 
 	private:
 		SkyBox* m_SkyBox;
 		float deltaTime  = 0.0f;
 		float lastFrameTime = 0.0f;
+		Editor* m_Editor;
 	public:
 		~Sandbox(){ delete m_SkyBox; }
 	};

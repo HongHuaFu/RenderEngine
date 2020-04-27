@@ -43,11 +43,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)Build\$(ProjectName)\</OutDir>
+    <OutDir>$(SolutionDir)Build\</OutDir>
     <IntDir>$(SolutionDir)Build\$(ProjectName)\Obj\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)Build\$(ProjectName)\</OutDir>
+    <OutDir>$(SolutionDir)Build\</OutDir>
     <IntDir>$(SolutionDir)Build\$(ProjectName)\Obj\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -90,7 +90,7 @@
     <ClInclude Include="Api.hpp" />
     <ClInclude Include="Event\Event_Key.hpp" />
     <ClInclude Include="Event\Event_Mouse.hpp" />
-    <ClInclude Include="IO\LoadMesh.hpp" />
+    <ClInclude Include="Pipeline\PP_Defferd_Lambert.hpp" />
     <ClInclude Include="Pipeline\PP_PBRIBLForward.hpp" />
     <ClInclude Include="Scene\Light.hpp" />
     <ClInclude Include="Pipeline\PP_PBRDeffered.hpp" />
@@ -127,7 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Event\Event_Implement.cpp" />
-    <ClCompile Include="IO\LoadMesh.cpp" />
+    <ClCompile Include="Pipeline\PP_Defferd_Lambert.cpp" />
     <ClCompile Include="Pipeline\PP_PBRIBLForward.cpp" />
     <ClCompile Include="Pipeline\PP_PBRDeffered.cpp" />
     <ClCompile Include="Scene\Camera.cpp" />

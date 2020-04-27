@@ -24,13 +24,11 @@ namespace RE
 	{
 		delete m_HdrToCubemap;
 		delete m_IrradianceCapture;
-		delete m_PrefilterMat;
+		delete m_Prefilter;
 		delete m_IntegrateBRDF;
 		delete m_CubeSceneNode;
 		delete m_Cube;
 		delete m_SkyBox;
-		delete m_Irradiance;
-		delete m_Prefiltere;
 	}
 
 	void PP_PBRIBLForward::Start(Renderer* renderer)
@@ -42,26 +40,24 @@ namespace RE
 		auto hdrToCubemap = Asset::LoadShader("pbr_ibl_forward::hdr2cubemap","Asset/Shader/PBR_IBL_Forward/Hdr2Cubemap.vs","Asset/Shader/PBR_IBL_Forward/Hdr2Cubemap.fs");
 		m_HdrToCubemap = new Material(hdrToCubemap);
 
-		auto irradianceCapture = Asset::LoadShader("pbr_ibl_forward::irradiance","Asset/Shader/PBR_IBL_Forward/Irradiance.vs","Asset/Shader/PBR_IBL_Forward/Irradiance.fs");
-		m_IrradianceCapture = new Material(irradianceCapture);
+		//auto irradianceCapture = Asset::LoadShader("pbr_ibl_forward::irradiance","Asset/Shader/PBR_IBL_Forward/IrradianceCapture.vs","Asset/Shader/PBR_IBL_Forward/IrradianceCapture.fs");
+		//m_IrradianceCapture = new Material(irradianceCapture);
 
-		auto prefilterCapture = Asset::LoadShader("pbr_ibl_forward::prefilter","Asset/Shader/PBR_IBL_Forward/Prefilter.vs","Asset/Shader/PBR_IBL_Forward/Prefilter.fs");
-		m_PrefilterMat = new Material(prefilterCapture);
+		//auto prefilterCapture = Asset::LoadShader("pbr_ibl_forward::prefilter","Asset/Shader/PBR_IBL_Forward/PrefilterCapture.vs","Asset/Shader/PBR_IBL_Forward/PrefilterCapture.fs");
+		//m_Prefilter = new Material(prefilterCapture);
 
 		auto integrateBrdf = Asset::LoadShader("pbr_ibl_forward::integrate","Asset/Shader/PBR_IBL_Forward/IntegrateBrdf.vs","Asset/Shader/PBR_IBL_Forward/IntegrateBrdf.fs");
 		m_IntegrateBRDF = new Material(integrateBrdf);
 
 		m_HdrToCubemap->DepthCompare = GL_LEQUAL;
-		m_IrradianceCapture->DepthCompare = GL_LEQUAL;
-		m_PrefilterMat->DepthCompare  = GL_LEQUAL;
+		//m_IrradianceCapture->DepthCompare = GL_LEQUAL;
+		//m_Prefilter->DepthCompare  = GL_LEQUAL;
 		m_HdrToCubemap->Cull = false;
-		m_IrradianceCapture->Cull = false;
-		m_PrefilterMat->Cull = false;
-
+		//m_IrradianceCapture->Cull = false;
+		//m_Prefilter->Cull = false;
 		#pragma endregion
 
 		m_Cube = new Cube();
-
 		// 独立出来的SceneNode
 		m_CubeSceneNode = new SceneNode(0);
 		m_CubeSceneNode->Mesh = m_Cube;
@@ -72,28 +68,7 @@ namespace RE
 
 		Texture* hdrMap = Asset::LoadHDR("MonoLake.hdr", "Asset/Texture/MonoLake.hdr");
 		m_SkyBox = HDR2Cubemap(hdrMap);
-
-		// 辐照度图预计算
-		m_Irradiance = new TextureCube();
-		m_Irradiance->DefaultInitialize(32, 32, GL_RGB, GL_FLOAT);
-		m_IrradianceCapture->SetTextureCube("skyboxMap",m_SkyBox,0);
-		m_CubeSceneNode->Material = m_IrradianceCapture;
-		m_Renderer->m_RenderHelper->RenderToCubeMap(m_CubeSceneNode,m_Irradiance);
-
-		m_Prefiltere = new TextureCube();
-		// 带mipmap等级的立方体贴图
-		m_Prefiltere->m_FilterMin = GL_LINEAR_MIPMAP_LINEAR;
-		m_Prefiltere->DefaultInitialize(128, 128, GL_RGB, GL_FLOAT, true);
-		m_PrefilterMat->SetTextureCube("skyboxMap",m_SkyBox,0);
-		m_CubeSceneNode->Material = m_PrefilterMat;
-
-		// 为每个mip等级渲染一次
-		unsigned int maxMipLevels = 5;
-		for (unsigned int i = 0; i < maxMipLevels; ++i)
-		{
-			m_PrefilterMat->SetFloat("roughness", (float)i / (float)(maxMipLevels - 1));
-			m_Renderer->m_RenderHelper->RenderToCubeMap(m_CubeSceneNode,m_Prefiltere,glm::vec3(0.0f),i);
-		}
+		//m_SkyBox = Asset::LoadTextureCube("GN_ENV","Asset/Texture/gn_env/");
 	}
 
 
@@ -116,6 +91,7 @@ namespace RE
 			RenderTarget *renderTarget = renderer->m_RenderTargetsCustom[targetIndex];
 			if (renderTarget)
 			{
+				// TODO:
 				glViewport(0, 0, renderTarget->m_Width, renderTarget->m_Height);
 				glBindFramebuffer(GL_FRAMEBUFFER, renderTarget->m_ID);
 				if (renderTarget->m_HasDepthAndStencil)
@@ -128,8 +104,11 @@ namespace RE
 			{
 				glViewport(0, 0, renderer->m_RenderSize.x, renderer->m_RenderSize.y);
 				// 若没有目标则渲染到通用fbo
-				//glBindFramebuffer(GL_FRAMEBUFFER, renderer->m_CustomTarget->m_ID);
-				glBindFramebuffer(GL_FRAMEBUFFER,0);
+				glBindFramebuffer(GL_FRAMEBUFFER, renderer->m_CustomTarget->m_ID);
+				if (renderer->m_CustomTarget->m_HasDepthAndStencil)
+					glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+				else
+					glClear(GL_COLOR_BUFFER_BIT);
 				renderer->m_Camera->SetPerspective(renderer->m_Camera->FOV, renderer->m_RenderSize.x / renderer->m_RenderSize.y, 0.1, 100.0f);
 			}
 
@@ -148,14 +127,13 @@ namespace RE
 		renderer->m_CommandBuffer->Clear();
 		renderer->m_RenderTargetsCustom.clear();
 		renderer->m_CurrentRenderTargetCustom = nullptr;
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
 
 	TextureCube* PP_PBRIBLForward::HDR2Cubemap(Texture* envMap)
 	{
 		m_CubeSceneNode->Material = m_HdrToCubemap;
 		m_HdrToCubemap->SetTexture("hdrmap", envMap, 0);
-
-		// 使用shared_ptr更好吧
 		TextureCube* hdrEnvMap = new TextureCube();
 		hdrEnvMap->DefaultInitialize(512, 512, GL_RGB, GL_FLOAT);
 		m_Renderer->m_RenderHelper->RenderToCubeMap(m_CubeSceneNode, hdrEnvMap);

@@ -54,6 +54,7 @@ namespace RE
 	private:
 		friend class RenderHelper;
 		friend class PP_PBRIBLForward;
+		friend class PP_Defferd_Lambert;
 	};
 }
 

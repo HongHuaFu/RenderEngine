@@ -37,6 +37,5 @@ namespace RE
 		
 		static TextureCube* LoadTextureCube(std::string,std::string);
 		static TextureCube* GetTextureCube(std::string);
-
 	};
 }

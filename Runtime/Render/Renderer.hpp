@@ -52,9 +52,13 @@ namespace RE
 		CommandBuffer* m_CommandBuffer;
 		GraphicCache* m_GraphicCache;
 		glm::vec2 m_RenderSize;
+
 		Camera* m_Camera;
 		PP_PBRIBLForward* m_PP_PBRIBLForward;
+
 		RenderTarget* m_CurrentRenderTargetCustom;
+		RenderTarget* m_GBuffer;
+
 		RenderHelper* m_RenderHelper;
 		std::vector<RenderTarget*> m_RenderTargetsCustom;
 		RenderTarget* m_CustomTarget;
@@ -68,6 +72,7 @@ namespace RE
 	private:
 		friend class PP_PBRDeffered;
 		friend class PP_PBRIBLForward;
+		friend class PP_Defferd_Lambert;
 	};
 
 }

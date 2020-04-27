@@ -1,25 +1,40 @@
 #pragma once
-
-#include <vector>
 #include <memory>
+#include <vector>
+#include <string>
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "Widget.hpp"
 
-#include "ImGui/imgui.h"
+namespace RE
+{
+	class Renderer;
+}
+
 
 class Editor
 {
-private:
-	GLFWwindow* m_Window;
-	ImVec4 m_ClearColor = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 public:
-	Editor(GLFWwindow*);
+	Editor() = default;
 	~Editor();
-	void OnStart();
-	void OnUpdate();
+
+	void OnStart(GLFWwindow* window,RE::Renderer* renderer);
+	void OnTick();
+	void PushRender();
 private:
-	void MainWindow_Begin();
-	void MainWindow_End();	
+	void Create_Widgets();
+	void OnTick_Widgets();
 
+	void BeginMainWindow();
+	void EndMainWindow();
 
+	void ImGUIInit();
+	void ImGUIClose();
+private:
+	bool m_EditorBegin{ false };
+	GLFWwindow* m_Window;
+	RE::Renderer* m_Renderer;
+
+	std::string m_EditorName{ u8"±à¼­Æ÷"};
+	std::vector<std::unique_ptr<Widget>> m_Widgets;
 };
-

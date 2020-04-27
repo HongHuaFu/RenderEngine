@@ -127,6 +127,7 @@ namespace RE
 	{
 		if (cull)
 		{
+			// 使用相机视锥体提前剔除
 			std::vector<RenderCommand> commands;
 			for (auto it = m_DefaultRenderCommands.begin(); it != m_DefaultRenderCommands.end(); ++it)
 			{

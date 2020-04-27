@@ -31,15 +31,21 @@ namespace RE
 		delete m_CommandBuffer;
 		delete m_PP_PBRIBLForward;
 		delete m_RenderHelper;
+		delete m_GBuffer;
 	}
 
 	void Renderer::Init()
 	{
 		m_CommandBuffer = new CommandBuffer(this);
 		m_GraphicCache = new GraphicCache();
-		m_CurrentRenderTargetCustom = nullptr;
+
 		m_RenderHelper = new RenderHelper(this);
-		m_CustomTarget = new RenderTarget(1, 1, GL_HALF_FLOAT, 1, true);
+		m_CustomTarget = new RenderTarget(128, 128, GL_HALF_FLOAT, 1, true);
+		m_CurrentRenderTargetCustom = nullptr;
+
+		m_GBuffer = new RenderTarget(1, 1, GL_HALF_FLOAT, 4, true);
+
+
 		m_Camera = new FlyCamera(glm::vec3(0.0f, 0.0f, 0.0f));
 		m_GraphicCache->SetDepthTest(true);
 		m_GraphicCache->SetCull(true);
@@ -65,6 +71,7 @@ namespace RE
 		m_RenderSize.x = width;
 		m_RenderSize.y = height;
 		m_CustomTarget->ReSize(width, height);
+		m_GBuffer->ReSize(width,height);
 
 		m_Camera->SetPerspective(glm::radians(60.0f), (float)width / (float)height, 0.1f, 100.0f);
 	}

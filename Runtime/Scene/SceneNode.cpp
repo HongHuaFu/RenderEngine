@@ -6,7 +6,7 @@
 
 namespace RE
 {
-	SceneNode::SceneNode(unsigned int id) : m_ID(id)
+	SceneNode::SceneNode(unsigned int id,std::string name) : m_ID(id),name(name)
 	{
 
 	}

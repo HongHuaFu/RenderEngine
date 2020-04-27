@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <glm/glm.hpp>
+#include <string>
 
 namespace RE
 {
@@ -12,6 +13,7 @@ namespace RE
 	class SceneNode
 	{
 	public:
+		std::string name;
 		Mesh* Mesh; // 每个节点仅有一个Mesh
 		Material* Material; // 每个节点仅有一个材质(默认材质)
 
@@ -39,7 +41,7 @@ namespace RE
 		// 当前节点的ID
 		unsigned int m_ID;
 	public:
-		SceneNode(unsigned int id);
+		SceneNode(unsigned int id,std::string name = u8"新建物体");
 		~SceneNode();
 
 		// 场景节点 transform

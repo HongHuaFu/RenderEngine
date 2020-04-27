@@ -8,7 +8,7 @@
 
 namespace RE
 {
-	SkyBox::SkyBox() : SceneNode(Scene::CounterID++)
+	SkyBox::SkyBox() : SceneNode(Scene::CounterID++,u8"Ìì¿ÕºÐ")
 	{
 		Scene::Root->AddChild(this);
 
